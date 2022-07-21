@@ -23,6 +23,7 @@
     "react-native-camera": "^4.2.1",
     "react-native-document-picker": "^8.1.1",
     "react-native-fs": "^2.20.0",
+    "react-native-gesture-bottom-sheet": "^1.1.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-paper": "^4.12.3",
     "react-native-permissions": "^3.6.0",

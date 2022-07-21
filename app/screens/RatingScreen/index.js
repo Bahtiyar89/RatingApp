@@ -1,25 +1,27 @@
-import React, { Fragment, useContext, useState, useMemo } from 'react';
+import React, {Fragment, useState, useContext} from 'react';
 import {
   View,
   Pressable,
   Text,
   SafeAreaView,
   ScrollView,
-  Image,
   TouchableOpacity,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { useFocusEffect, useNavigationState } from '@react-navigation/native';
-import { Appbar, TextInput } from 'react-native-paper';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useFocusEffect} from '@react-navigation/native';
+import {Appbar} from 'react-native-paper';
 
+import BalanceContext from '../../context/balance/BalanceContext';
 import ShevronLeft from '../../assets/chevron-left';
-import DetectorContext from '../../context/detector/DetectorContext';
-import Colors from '../../constants/Сolors';
 import SendCoinsModal from './sendCoinsModal';
 import MainStyle from '../../utils/MainStyle';
 import styles from './styles';
+import Loading from '../../components/Loading';
 
 export default function RatingScreen(props) {
+  const balanceContext = useContext(BalanceContext);
+  const {loading} = balanceContext;
+
   const [id, seTid] = useState();
   const [item, seTitem] = useState({});
   const [visibleModal, seTvisibleModal] = useState(false);
@@ -36,7 +38,6 @@ export default function RatingScreen(props) {
   );
 
   const renderItem = element => {
-    console.log('element.id8: ', element.id8 == 'none');
     return (
       <View key={element?.key}>
         <Text style={styles.legend}>{'Наименование'}</Text>
@@ -199,13 +200,13 @@ export default function RatingScreen(props) {
       </View>
     );
   };
+  console.log('loading: 2', loading);
   return (
     <Fragment>
-      {/*loading_detector && <CustomModal loading={loading_detector} />*/}
-
+      <Loading loading={loading} />
       <Appbar.Header style={MainStyle.appBarThreeItems}>
         <Pressable
-          style={{ alignSelf: 'center' }}
+          style={{alignSelf: 'center'}}
           onPress={() => props.navigation.goBack()}>
           <ShevronLeft />
         </Pressable>

@@ -1,4 +1,11 @@
-import React, { Fragment, useState, useContext, useEffect } from 'react';
+import React, {
+  useRef,
+  Fragment,
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+} from 'react';
 import {
   View,
   Text,
@@ -9,18 +16,19 @@ import {
   ScrollView,
   RefreshControl,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { useToast } from 'react-native-toast-notifications';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useToast} from 'react-native-toast-notifications';
 
 import styles from './styles';
-import { Appbar, Card, Title, Paragraph, Button } from 'react-native-paper';
-import { useFocusEffect } from '@react-navigation/native';
+import {Appbar, Card, Title, Paragraph, Button} from 'react-native-paper';
+import {useFocusEffect} from '@react-navigation/native';
 import BalanceContext from '../../context/balance/BalanceContext';
-
+import HomeBottomSheet from '../../components/HomeBottomSheet';
 import utility from '../../utils/Utility';
 import BalanceModal from './balanceModal';
 import CartModal from './cartModal';
 import Loading from '../../components/Loading';
+import defaultImage from '../../assets/defaultImage.jpg';
 
 const columns = [
   {
@@ -37,17 +45,12 @@ const columns = [
   },
 ];
 
-export default function EventsScreen({ navigation }) {
+export default function EventsScreen({navigation}) {
   const balanceContext = useContext(BalanceContext);
+  const ref = useRef(null);
   const toast = useToast();
-  const {
-    loading,
-    balance,
-    getBalance,
-    getRatings,
-    rates,
-    clearRatingsBalance,
-  } = balanceContext;
+  const {loading, balance, getBalance, getRatings, rates, clearRatingsBalance} =
+    balanceContext;
 
   const [stavki, seTstavki] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -68,9 +71,9 @@ export default function EventsScreen({ navigation }) {
       if (keys) {
         getBalance(keys);
         getRatings(columns, keys);
-        seTwalletKeys({ ...walletKeys, sk: keys?.sk, pk: keys?.pk });
+        seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       } else {
-        seTwalletKeys({ ...walletKeys, sk: file?.sk, pk: file?.pk });
+        seTwalletKeys({...walletKeys, sk: file?.sk, pk: file?.pk});
       }
     });
   }
@@ -106,6 +109,20 @@ export default function EventsScreen({ navigation }) {
     encrypData();
     wait(2000).then(() => setRefreshing(false));
   }, []);
+
+  const profilePicture = null;
+  const renderImage = useCallback(() => {
+    return (
+      <Image srouce={defaultImage} style={{width: '100%', height: '100%'}} />
+    );
+  }, [profilePicture]);
+
+  useEffect(() => {
+    renderImage();
+  }, [renderImage]);
+  const handlePress = () => {
+    ref.current.show();
+  };
   return (
     <Fragment>
       <Loading loading={loading} />
@@ -120,20 +137,25 @@ export default function EventsScreen({ navigation }) {
         <View>
           <Image
             source={require('../../assets/star.png')} //Change your icon image here
-            style={{ height: 25, width: 25 }}
+            style={{height: 25, width: 25}}
           />
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('ProfileScreen')}
+          onPress={handlePress}
           style={{
             borderRadius: 50,
             overflow: 'hidden',
           }}>
           <Image
             source={require('../../assets/defaultImage.jpg')} //Change your icon image here
-            style={{ height: 25, width: 25 }}
+            style={{height: 25, width: 25}}
           />
         </TouchableOpacity>
+        <HomeBottomSheet
+          ref={ref}
+          navigation={navigation}
+          image={renderImage()}
+        />
       </Appbar.Header>
 
       <KeyboardAwareScrollView>
@@ -142,10 +164,10 @@ export default function EventsScreen({ navigation }) {
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }>
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={{ fontSize: 20, alignSelf: 'flex-end' }}>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontSize: 20, alignSelf: 'flex-end'}}>
                 Баланс:{' '}
-                <Text style={{ color: '#000' }} onPress={showModal}>
+                <Text style={{color: '#000'}} onPress={showModal}>
                   {balance?.balance} swt
                 </Text>
               </Text>
@@ -164,12 +186,10 @@ export default function EventsScreen({ navigation }) {
               }}
               data={stavki}
               keyExtractor={state => (Math.random(100) * 10).toString()}
-              renderItem={({ item }) => {
+              renderItem={({item}) => {
                 return (
                   <Card
-                    onPress={() =>
-                      navigation.navigate('RatingScreen', { item })
-                    }
+                    onPress={() => navigation.navigate('RatingScreen', {item})}
                     style={{
                       flex: 1,
                       width: '90%',
@@ -178,7 +198,7 @@ export default function EventsScreen({ navigation }) {
                       borderWidth: 2,
                     }}>
                     <Card.Content>
-                      <Title style={{ fontSize: 16 }}>События: {item.dt}</Title>
+                      <Title style={{fontSize: 16}}>События: {item.dt}</Title>
 
                       <Paragraph>Наименование {item.name}</Paragraph>
 
@@ -188,7 +208,7 @@ export default function EventsScreen({ navigation }) {
                           justifyContent: 'space-between',
                         }}>
                         <Paragraph>Cтатус: скоро</Paragraph>
-                        <Text style={{ paddingLeft: 3 }}>21/01/2022</Text>
+                        <Text style={{paddingLeft: 3}}>21/01/2022</Text>
                       </View>
                     </Card.Content>
                   </Card>

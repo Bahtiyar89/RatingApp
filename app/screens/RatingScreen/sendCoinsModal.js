@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Text, Pressable, TouchableOpacity, View } from 'react-native';
-import { Modal, Portal, TextInput } from 'react-native-paper';
-import { useFocusEffect, useNavigationState } from '@react-navigation/native';
-import basex from 'bs58-rn';
+import React, {useEffect, useState, useContext, Fragment} from 'react';
+import {Text, Pressable} from 'react-native';
+import {Modal, Portal, TextInput} from 'react-native-paper';
+import {useFocusEffect} from '@react-navigation/native';
 import Buffer from 'buffer';
 
 import BalanceContext from '../../context/balance/BalanceContext';
 import utility from '../../utils/Utility';
+import CustomModal from '../../components/CustomModal';
 import styles from '../EventsScreen/styles';
 
-export default function SendCoinsModal({ visible, hideModal, item, id }) {
+export default function SendCoinsModal({visible, hideModal, item, id}) {
   const balanceContext = useContext(BalanceContext);
-  const { postRateParticipant } = balanceContext;
+  const {postRateParticipant, loading} = balanceContext;
   const [encripted, seTencripted] = useState();
   const [walletKeys, seTwalletKeys] = useState({
     sk: '',
@@ -20,9 +20,9 @@ export default function SendCoinsModal({ visible, hideModal, item, id }) {
   async function encrypData() {
     await utility.getItemObject('wkeys').then(keys => {
       if (keys) {
-        seTwalletKeys({ ...walletKeys, sk: keys?.sk, pk: keys?.pk });
+        seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       } else {
-        seTwalletKeys({ ...walletKeys, sk: file?.sk, pk: file?.pk });
+        seTwalletKeys({...walletKeys, sk: file?.sk, pk: file?.pk});
       }
     });
   }
@@ -35,7 +35,6 @@ export default function SendCoinsModal({ visible, hideModal, item, id }) {
       return () => {
         // Do something when the screen is unfocused
         // Useful for cleanup functions
-        // clearRatingsBalance();
       };
     }, []),
   );
@@ -77,7 +76,6 @@ export default function SendCoinsModal({ visible, hideModal, item, id }) {
     borderRadius: 20,
   };
   const [price, seTprice] = useState('');
-  const [send, seTsend] = useState('');
   const [result, setResult] = useState();
   const [scan, setScan] = useState(false);
 
@@ -92,36 +90,39 @@ export default function SendCoinsModal({ visible, hideModal, item, id }) {
 
   const handleSendCoins = () => {
     postRateParticipant(walletKeys, Number(price), item?.scAddr, encripted);
+    hideModal();
   };
 
   return (
-    <Portal>
-      <Modal
-        visible={visible}
-        onDismiss={hideModal}
-        contentContainerStyle={containerStyle}>
-        <Text style={styles.textparagraph}>Адрес отправки</Text>
-        <TextInput
-          label={'получатель'}
-          mode="outlined"
-          right={<TextInput.Icon name="barcode" onPress={startScan} />}
-          style={styles.textInput}
-          value={item?.scAddr}
-          editable={false}
-        />
-        <TextInput
-          label={'сумма swt'}
-          mode="outlined"
-          style={styles.textInput}
-          value={price}
-          onChangeText={text => seTprice(text)}
-        />
-        <Pressable
-          onPress={handleSendCoins}
-          style={[styles.completeButton, { marginTop: 20 }]}>
-          <Text style={styles.completeButtonText}>Отправить баланс</Text>
-        </Pressable>
-      </Modal>
-    </Portal>
+    <Fragment>
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={hideModal}
+          contentContainerStyle={containerStyle}>
+          <Text style={styles.textparagraph}>Адрес отправки</Text>
+          <TextInput
+            label={'получатель'}
+            mode="outlined"
+            right={<TextInput.Icon name="barcode" onPress={startScan} />}
+            style={styles.textInput}
+            value={item?.scAddr}
+            editable={false}
+          />
+          <TextInput
+            label={'сумма swt'}
+            mode="outlined"
+            style={styles.textInput}
+            value={price}
+            onChangeText={text => seTprice(text)}
+          />
+          <Pressable
+            onPress={handleSendCoins}
+            style={[styles.completeButton, {marginTop: 20}]}>
+            <Text style={styles.completeButtonText}>Отправить баланс</Text>
+          </Pressable>
+        </Modal>
+      </Portal>
+    </Fragment>
   );
 }

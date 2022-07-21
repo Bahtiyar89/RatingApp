@@ -1,5 +1,5 @@
-import React, { useReducer } from 'react';
-import { useToast } from 'react-native-toast-notifications';
+import React, {useReducer} from 'react';
+import {useToast} from 'react-native-toast-notifications';
 import basex from 'bs58-rn';
 import Base64 from 'base64-js';
 import Buffer from 'buffer';
@@ -7,7 +7,7 @@ import Sodium from 'react-native-sodium';
 
 import BalanceContext from './BalanceContext';
 import BalanceReducer from './BalanceReducer';
-import { doPost } from '../../utils/apiActions';
+import {doPost} from '../../utils/apiActions';
 
 import {
   GET_BALANCE,
@@ -28,17 +28,17 @@ const BalanceState = props => {
 
   //Get Balance
   const getBalance = async file => {
-    dispatch({ type: LOADING, payload: true });
+    dispatch({type: LOADING, payload: true});
     doPost('api/Monitor/GetBalance/', {
       PublicKey: file?.pk,
       networkAlias: 'MainNet',
     })
-      .then(({ data }) => {
-        dispatch({ type: LOADING, payload: false });
-        dispatch({ type: GET_BALANCE, payload: data });
+      .then(({data}) => {
+        dispatch({type: LOADING, payload: false});
+        dispatch({type: GET_BALANCE, payload: data});
       })
       .catch(error => {
-        dispatch({ type: LOADING, payload: false });
+        dispatch({type: LOADING, payload: false});
         toast.show(error.message, {
           type: 'warning',
           duration: 3000,
@@ -77,15 +77,15 @@ const BalanceState = props => {
       Fee: 0.1,
       contractParams: formData,
     })
-      .then(({ data }) => {
-        dispatch({ type: LOADING, payload: false });
+      .then(({data}) => {
+        dispatch({type: LOADING, payload: false});
         if (data.success) {
           dispatch({
             type: GET_RATINGS,
             payload: data.dataResponse.smartContractResult,
           });
         } else {
-          dispatch({ type: LOADING, payload: false });
+          dispatch({type: LOADING, payload: false});
           toast.show(data.message, {
             type: 'warning',
             duration: 3000,
@@ -94,7 +94,7 @@ const BalanceState = props => {
         }
       })
       .catch(error => {
-        dispatch({ type: LOADING, payload: false });
+        dispatch({type: LOADING, payload: false});
         toast.show(error.message, {
           type: 'warning',
           duration: 3000,
@@ -105,7 +105,7 @@ const BalanceState = props => {
 
   //Get Ratings
   const getRatings = async (formData, keys) => {
-    dispatch({ type: LOADING, payload: true });
+    dispatch({type: LOADING, payload: true});
     const contract = {
       authKey: '',
       NetworkAlias: 'MainNet',
@@ -119,7 +119,7 @@ const BalanceState = props => {
     };
 
     doPost('api/transaction/pack', contract)
-      .then(({ data }) => {
+      .then(({data}) => {
         if (data.success) {
           transactionExecute(
             formData,
@@ -127,7 +127,7 @@ const BalanceState = props => {
             keys,
           );
         } else {
-          dispatch({ type: LOADING, payload: false });
+          dispatch({type: LOADING, payload: false});
           toast.show(data.message, {
             type: 'warning',
             duration: 3000,
@@ -136,7 +136,7 @@ const BalanceState = props => {
         }
       })
       .catch(error => {
-        dispatch({ type: LOADING, payload: false });
+        dispatch({type: LOADING, payload: false});
         toast.show(error.message, {
           type: 'warning',
           duration: 3000,
@@ -181,10 +181,15 @@ const BalanceState = props => {
       UserData: encrypted,
       TransactionSignature: signature,
     })
-      .then(({ data }) => {
+      .then(({data}) => {
         console.log('daaattaaa:execute', data);
-        dispatch({ type: LOADING, payload: false });
+        dispatch({type: LOADING, payload: false});
         if (data.success) {
+          toast.show('Транзакция отправлено', {
+            type: 'success',
+            duration: 3000,
+            animationType: 'zoom-in',
+          });
         } else {
           toast.show(data.message, {
             type: 'warning',
@@ -194,7 +199,7 @@ const BalanceState = props => {
         }
       })
       .catch(error => {
-        dispatch({ type: LOADING, payload: false });
+        dispatch({type: LOADING, payload: false});
         toast.show(error.response.data, {
           type: 'warning',
           duration: 3000,
@@ -211,7 +216,7 @@ const BalanceState = props => {
 
     const encrypted = base58.encode(toEncrypt);
 
-    dispatch({ type: LOADING, payload: true });
+    dispatch({type: LOADING, payload: true});
     doPost('api/transaction/pack', {
       PublicKey: wk.pk,
       ReceiverPublicKey: addressPk,
@@ -222,9 +227,8 @@ const BalanceState = props => {
       Fee: 0.2,
       UserData: encrypted,
     })
-      .then(({ data }) => {
+      .then(({data}) => {
         console.log('data:Pack ', data);
-        dispatch({ type: LOADING, payload: false });
         if (data.success) {
           transactionExecuteRatingParticipant(
             data.dataResponse.transactionPackagedStr,
@@ -234,7 +238,7 @@ const BalanceState = props => {
             toEncrypt,
           );
         } else {
-          dispatch({ type: LOADING, payload: false });
+          dispatch({type: LOADING, payload: false});
           toast.show(data.message, {
             type: 'warning',
             duration: 3000,
@@ -243,7 +247,7 @@ const BalanceState = props => {
         }
       })
       .catch(error => {
-        dispatch({ type: LOADING, payload: false });
+        dispatch({type: LOADING, payload: false});
         toast.show(error.response.data, {
           type: 'warning',
           duration: 3000,
@@ -254,7 +258,7 @@ const BalanceState = props => {
 
   //Get Balance
   const clearRatingsBalance = () => {
-    dispatch({ type: CLEAR_RATINGS_BALANCE });
+    dispatch({type: CLEAR_RATINGS_BALANCE});
   };
   return (
     <BalanceContext.Provider
