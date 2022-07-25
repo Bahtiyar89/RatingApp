@@ -123,6 +123,7 @@ export default function EventsScreen({navigation}) {
   const handlePress = () => {
     ref.current.show();
   };
+
   return (
     <Fragment>
       <Loading loading={loading} />

@@ -1,32 +1,19 @@
-import React, { Fragment, useContext, useState, useMemo } from 'react';
-import {
-  View,
-  TextInput,
-  Pressable,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  Image,
-} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { useFocusEffect } from '@react-navigation/native';
-import { Appbar, Button } from 'react-native-paper';
-
+import React, {Fragment} from 'react';
+import {View, Pressable, Text, SafeAreaView, ScrollView} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {Appbar} from 'react-native-paper';
 import ShevronLeft from '../../assets/chevron-left';
-import DetectorContext from '../../context/detector/DetectorContext';
-import Colors from '../../constants/Сolors';
-import CustomModal from '../../components/CustomLoading';
 import MainStyle from '../../utils/MainStyle';
 import styles from './styles';
 
-export default function ProfileScreen({ navigation }) {
+export default function ProfileScreen({navigation}) {
   return (
     <Fragment>
       {/*loading_detector && <CustomModal loading={loading_detector} />*/}
 
       <Appbar.Header style={MainStyle.appBarThreeItems}>
         <Pressable
-          style={{ alignSelf: 'center' }}
+          style={{alignSelf: 'center'}}
           onPress={() => navigation.goBack()}>
           <ShevronLeft />
         </Pressable>

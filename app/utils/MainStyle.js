@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#003143',
   },
   appBarThreeDevider: {
-    width: '60%',
+    width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

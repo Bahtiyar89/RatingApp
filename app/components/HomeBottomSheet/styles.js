@@ -23,6 +23,12 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.defaultBlack,
     fontSize: 16,
+    marginLeft: 5,
+  },
+  text2: {
+    color: Colors.defaultBlack,
+    fontSize: 16,
+    marginLeft: 15,
   },
   imageWrapper: {
     width: 31,

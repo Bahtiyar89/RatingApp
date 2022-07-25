@@ -9,6 +9,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import EventsScreen from '../screens/EventsScreen';
 import BalanceSendScreen from '../screens/BalanceSend';
 import RatingScreen from '../screens/RatingScreen';
+import TransactionScreen from '../screens/TransactionScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,10 @@ function HomeStackScreen() {
       <HomeStack.Screen
         name="BalanceSendScreen"
         component={BalanceSendScreen}
+      />
+      <HomeStack.Screen
+        name="TransactionScreen"
+        component={TransactionScreen}
       />
     </HomeStack.Navigator>
   );
