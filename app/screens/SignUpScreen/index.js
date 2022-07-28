@@ -102,81 +102,47 @@ export default function SignUpScreen({navigation}) {
               </Text>
             </View>
 
-            <View>
-              {/*
-              <Text style={styles.legend}>Фамилия</Text>
-              <TextInput
-                style={[styles.input]}
-                placeholderTextColor={'#999CA0'}
-                placeholder="Антонов"
-                value={newuser.last_name}
-                onChangeText={val => seTnewuser({ ...newuser, last_name: val })}
-              />*/}
+            <Button
+              icon="lead-pencil"
+              style={{
+                width: '100%',
+                marginTop: 10,
+                marginBottom: 10,
+              }}
+              disabled={
+                walletKeys.pk.length === 44 && walletKeys.sk.length === 88
+              }
+              onPress={generateKeys}
+              mode="contained">
+              <Text style={{textAlign: 'center', color: '#000'}}>
+                generateKeys
+              </Text>
+            </Button>
 
-              <Button
-                icon="lead-pencil"
-                style={{
-                  width: '100%',
-                  marginTop: 10,
-                  marginBottom: 10,
-                }}
-                disabled={
-                  walletKeys.pk.length === 44 && walletKeys.sk.length === 88
-                }
-                onPress={generateKeys}
-                mode="contained">
-                <Text style={{textAlign: 'center', color: '#000'}}>
-                  generateKeys
-                </Text>
-              </Button>
-
-              <View style={{marginTop: 5, flexDirection: 'row', width: '90%'}}>
-                <Text style={{flex: 1}}>Public key</Text>
-              </View>
-              <TextInput
-                placeholder={'Public key'}
-                mode="outlined"
-                style={{
-                  backgroundColor: '#000',
-                  color: '#fff',
-                  borderRadius: 5,
-                  fontSize: 16,
-                  height: 48,
-                  borderRadius: 8,
-                  width: '100%',
-                  paddingVertical: 12,
-                  paddingHorizontal: 16,
-                }}
-                onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
-                value={walletKeys.pk}
-              />
-              <View style={{marginTop: 5, flexDirection: 'row', width: '90%'}}>
-                <Text style={{flex: 1}}>Secret key</Text>
-              </View>
-              <TextInput
-                placeholder={'Secret key'}
-                mode="outlined"
-                style={{
-                  backgroundColor: '#000',
-                  color: '#fff',
-                  borderRadius: 5,
-                  fontSize: 16,
-                  height: 48,
-                  borderRadius: 8,
-                  width: '100%',
-                  paddingVertical: 12,
-                  paddingHorizontal: 16,
-                }}
-                onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
-                value={walletKeys.sk}
-              />
-
-              <Pressable onPress={submit} style={[styles.completeButton]}>
-                <Text style={styles.completeButtonText}>
-                  Зарегистрироваться
-                </Text>
-              </Pressable>
+            <View style={{marginTop: 5, flexDirection: 'row', width: '90%'}}>
+              <Text style={{flex: 1}}>Public key</Text>
             </View>
+            <TextInput
+              placeholder={'Public key'}
+              mode="outlined"
+              style={styles.input}
+              onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
+              value={walletKeys.pk}
+            />
+            <View style={{marginTop: 5, flexDirection: 'row', width: '90%'}}>
+              <Text style={{flex: 1}}>Secret key</Text>
+            </View>
+            <TextInput
+              placeholder={'Secret key'}
+              mode="outlined"
+              style={styles.input}
+              onChangeText={val => seTwalletKeys({...walletKeys, sk: val})}
+              value={walletKeys.sk}
+            />
+
+            <Pressable onPress={submit} style={[styles.completeButton]}>
+              <Text style={styles.completeButtonText}>Зарегистрироваться</Text>
+            </Pressable>
           </ScrollView>
         </SafeAreaView>
       </KeyboardAwareScrollView>
