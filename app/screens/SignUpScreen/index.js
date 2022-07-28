@@ -1,4 +1,4 @@
-import React, { useContext, Fragment, useState } from 'react';
+import React, {useContext, Fragment, useState} from 'react';
 import {
   View,
   TextInput,
@@ -8,9 +8,9 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { useToast } from 'react-native-toast-notifications';
-import { Appbar, Button } from 'react-native-paper';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useToast} from 'react-native-toast-notifications';
+import {Appbar, Button} from 'react-native-paper';
 import Sodium from 'react-native-sodium';
 import basex from 'bs58-rn';
 import Buffer from 'buffer';
@@ -20,10 +20,10 @@ import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import styles from './styles';
 
-export default function SignUpScreen({ navigation }) {
+export default function SignUpScreen({navigation}) {
   const toast = useToast();
   const authContext = useContext(AuthContext);
-  const { loading, signUp } = authContext;
+  const {loading, signUp} = authContext;
   const [walletKeys, seTwalletKeys] = useState({
     sk: '',
     pk: '',
@@ -77,10 +77,10 @@ export default function SignUpScreen({ navigation }) {
           borderBottomWidth: 1,
           borderBottomColor: '#003143',
         }}>
-        <View style={{ width: '100%' }}>
+        <View style={{width: '100%'}}>
           <Image
             source={require('../../assets/sensor.png')} //Change your icon image here
-            style={{ height: 25, width: 25 }}
+            style={{height: 25, width: 25}}
           />
         </View>
       </Appbar.Header>
@@ -97,7 +97,7 @@ export default function SignUpScreen({ navigation }) {
             </View>
             <View style={styles.titleContainer}>
               <Text
-                style={[styles.title, styles.blueColor, { marginBottom: 20 }]}>
+                style={[styles.title, styles.blueColor, {marginBottom: 20}]}>
                 Новый пользователь
               </Text>
             </View>
@@ -125,17 +125,15 @@ export default function SignUpScreen({ navigation }) {
                 }
                 onPress={generateKeys}
                 mode="contained">
-                <Text style={{ textAlign: 'center', color: '#000' }}>
+                <Text style={{textAlign: 'center', color: '#000'}}>
                   generateKeys
                 </Text>
               </Button>
 
-              <View
-                style={{ marginTop: 5, flexDirection: 'row', width: '90%' }}>
-                <Text style={{ flex: 1 }}>Public key</Text>
+              <View style={{marginTop: 5, flexDirection: 'row', width: '90%'}}>
+                <Text style={{flex: 1}}>Public key</Text>
               </View>
               <TextInput
-                editable={false}
                 placeholder={'Public key'}
                 mode="outlined"
                 style={{
@@ -149,14 +147,13 @@ export default function SignUpScreen({ navigation }) {
                   paddingVertical: 12,
                   paddingHorizontal: 16,
                 }}
+                onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
                 value={walletKeys.pk}
               />
-              <View
-                style={{ marginTop: 5, flexDirection: 'row', width: '90%' }}>
-                <Text style={{ flex: 1 }}>Secret key</Text>
+              <View style={{marginTop: 5, flexDirection: 'row', width: '90%'}}>
+                <Text style={{flex: 1}}>Secret key</Text>
               </View>
               <TextInput
-                editable={false}
                 placeholder={'Secret key'}
                 mode="outlined"
                 style={{
@@ -170,6 +167,7 @@ export default function SignUpScreen({ navigation }) {
                   paddingVertical: 12,
                   paddingHorizontal: 16,
                 }}
+                onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
                 value={walletKeys.sk}
               />
 
