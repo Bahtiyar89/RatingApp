@@ -97,7 +97,9 @@ export default function TransactionScreen({navigation}) {
                               fromAccount: item.fromAccount,
                             })
                           }>
-                          {item.fromAccount}
+                          <Text style={{color: 'blue'}}>
+                            {item.fromAccount}
+                          </Text>
                         </Paragraph>
                       </Paragraph>
                       <Paragraph style={{fontWeight: 'bold'}}>
