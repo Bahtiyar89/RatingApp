@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useContext, useState } from 'react';
+import React, {useEffect, Fragment, useContext, useState} from 'react';
 import {
   View,
   TextInput,
@@ -8,23 +8,23 @@ import {
   Image,
 } from 'react-native';
 import styles from './styles';
-import { Appbar, Button } from 'react-native-paper';
+import {Appbar, Button} from 'react-native-paper';
 import RNFS from 'react-native-fs';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import DocumentPicker, {
   isInProgress,
   types,
 } from 'react-native-document-picker';
-import { useToast } from 'react-native-toast-notifications';
+import {useToast} from 'react-native-toast-notifications';
 
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({navigation}) => {
   const authContext = useContext(AuthContext);
   const toast = useToast();
 
-  const { signin, loading } = authContext;
+  const {signin, loading} = authContext;
 
   const [userState, seTuserState] = useState({
     pk: '',
@@ -93,10 +93,10 @@ const LoginScreen = ({ navigation }) => {
           borderBottomWidth: 1,
           borderBottomColor: '#003143',
         }}>
-        <View style={{ width: '100%' }}>
+        <View style={{width: '100%'}}>
           <Image
             source={require('../../assets/star.png')} //Change your icon image here
-            style={{ height: 25, width: 25 }}
+            style={{height: 25, width: 25}}
           />
         </View>
       </Appbar.Header>
@@ -119,7 +119,7 @@ const LoginScreen = ({ navigation }) => {
           <Text style={styles.legend}>Публичный ключ</Text>
           <TextInput
             style={[styles.input]}
-            onChangeText={val => seTuserState({ ...userState, pk: val })}
+            onChangeText={val => seTuserState({...userState, pk: val})}
             value={userState.pk}
             placeholderTextColor={'#999CA0'}
             placeholder="FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht"
@@ -129,7 +129,7 @@ const LoginScreen = ({ navigation }) => {
           <View style={styles.inputWrapper}>
             <TextInput
               style={[styles.input]}
-              onChangeText={val => seTuserState({ ...userState, sk: val })}
+              onChangeText={val => seTuserState({...userState, sk: val})}
               value={userState.sk}
               //secureTextEntry={passwordInputSecure}
               placeholderTextColor={'#999CA0'}
@@ -157,12 +157,12 @@ const LoginScreen = ({ navigation }) => {
               }
             }}
             mode="contained">
-            <Text style={{ textAlign: 'center', color: '#000' }}>
+            <Text style={{textAlign: 'center', color: '#000'}}>
               choose a file
             </Text>
           </Button>
 
-          <View style={{ marginTop: 20 }}>
+          <View style={{marginTop: 20}}>
             <Pressable onPress={submitLogin} style={[styles.completeButton]}>
               <Text style={[styles.completeButtonText]}>Войти</Text>
             </Pressable>

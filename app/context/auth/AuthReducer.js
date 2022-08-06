@@ -1,6 +1,6 @@
 import utility from '../../utils/Utility';
-import { CommonActions } from '@react-navigation/native';
-import { CLEAR_ERRORS } from '../types';
+import {CommonActions} from '@react-navigation/native';
+import {CLEAR_ERRORS} from '../types';
 import {
   LOGOUT,
   REGISTER_FAIL,
@@ -14,10 +14,10 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case LOADING:
-      return { ...state, loading: action.payload };
+      return {...state, loading: action.payload};
 
     case REGISTER_SUCCESS:
-      const { file: files, navigation } = action.payload;
+      const {file: files, navigation} = action.payload;
       utility.setItemObject('wkeys', files);
       navigation.goBack();
       return {
@@ -50,7 +50,7 @@ export default (state, action) => {
         error: [],
       };
     case CLEAR_ERRORS:
-      return { ...state, error: null };
+      return {...state, error: null};
 
     default:
       return state;

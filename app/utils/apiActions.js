@@ -1,20 +1,53 @@
 import axios from 'axios';
+
 import utility from '../utils/Utility';
 
 export const doGet = async (uri, params = {}) => {
-  const token = await utility.getItem('token');
-  console.log('token: 3', token);
+  //const token = await utility.getItem('token');
+
   const config = {
     headers: {
-      Authorization: `Bearer  ${JSON.parse(token)}`,
+      // Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
     params,
   };
-  return await axios.get('http://128.199.31.140:8444' + uri, config);
+  console.log('config 4', config);
+  console.log('ur 4', 'http://176.113.80.7:62000/' + uri);
+  return await axios.get('http://176.113.80.7:62000/' + uri, config);
+};
+
+export const doGetByBody = async (uri, postData, params = {}) => {
+  const config = {
+    headers: {
+      // Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    params,
+  };
+  return await axios.get(
+    'https://swttoken.herokuapp.com/' + uri,
+    postData,
+    config,
+  );
 };
 
 export const doPost = async (uri, postData, params = {}) => {
+  const config = {
+    headers: {
+      // Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Content-Encoding': 'utf-8',
+    },
+    params,
+  };
+  console.log('postData: ', postData);
+  return await axios.post('http://176.113.80.7:62000/' + uri, postData, config);
+};
+
+export const doPostFormData = async (uri, postData, params = {}) => {
+  console.log('params ', postData);
   const config = {
     headers: {
       //  Authorization: `Bearer ${token}`,
@@ -22,20 +55,23 @@ export const doPost = async (uri, postData, params = {}) => {
     },
     params,
   };
-  return await axios.post('http://176.113.80.7:62000/' + uri, postData, config);
+  return await axios.post(
+    'https://swttoken.herokuapp.com/' + uri,
+    postData,
+    config,
+  );
 };
 
 export const doPatch = async (uri, patchData, params = {}) => {
-  const token = await utility.getItem('token');
   const config = {
     headers: {
-      Authorization: `Bearer  ${JSON.parse(token)}`,
+      // Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
     params,
   };
   return await axios.patch(
-    'http://128.199.31.140:8444' + uri,
+    'https://swttoken.herokuapp.com/' + uri,
     patchData,
     config,
   );

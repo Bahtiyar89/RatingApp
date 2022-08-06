@@ -1,13 +1,13 @@
-import React, { useReducer } from 'react';
-import { PermissionsAndroid, Platform } from 'react-native';
-import { useToast } from 'react-native-toast-notifications';
+import React, {useReducer} from 'react';
+import {PermissionsAndroid, Platform} from 'react-native';
+import {useToast} from 'react-native-toast-notifications';
 import RNFS from 'react-native-fs';
 
 import AuthContext from './AuthContext';
 import AuthReducer from './AuthReducer';
 import utility from '../../utils/Utility';
 
-import { LOGOUT, LOGIN_SUCCESS, LOADING, REGISTER_SUCCESS } from '../types';
+import {LOGOUT, LOGIN_SUCCESS, LOADING, REGISTER_SUCCESS} from '../types';
 
 const AuthState = props => {
   const toast = useToast();
@@ -38,13 +38,13 @@ const AuthState = props => {
     );
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: { navigation, file },
+      payload: {navigation, file},
     });
-    dispatch({ type: LOADING, payload: false });
+    dispatch({type: LOADING, payload: false});
   };
 
   const signUp = async (file, navigation) => {
-    dispatch({ type: LOADING, payload: true });
+    dispatch({type: LOADING, payload: true});
 
     let path =
       Platform.OS === 'ios'
@@ -58,7 +58,7 @@ const AuthState = props => {
         })
         .catch(err => {
           console.log('err.message: ', err.message);
-          dispatch({ type: LOADING, payload: false });
+          dispatch({type: LOADING, payload: false});
         });
     } else {
       try {
@@ -80,17 +80,17 @@ const AuthState = props => {
             })
             .catch(err => {
               console.log('err.message: ', err.message);
-              dispatch({ type: LOADING, payload: false });
+              dispatch({type: LOADING, payload: false});
             });
           return true;
         } else {
           console.log('Download permission denied');
-          dispatch({ type: LOADING, payload: false });
+          dispatch({type: LOADING, payload: false});
           return false;
         }
       } catch (err) {
         console.warn(err);
-        dispatch({ type: LOADING, payload: false });
+        dispatch({type: LOADING, payload: false});
         return false;
       }
     }
@@ -99,11 +99,11 @@ const AuthState = props => {
   //logout
   const signOut = async () => {
     try {
-      dispatch({ type: LOADING, payload: true });
+      dispatch({type: LOADING, payload: true});
       dispatch({
         type: LOGOUT,
       });
-      dispatch({ type: LOADING, payload: false });
+      dispatch({type: LOADING, payload: false});
     } catch (err) {
       console.log(err);
     }
