@@ -1,30 +1,24 @@
 import React, {Fragment, useState, useContext} from 'react';
 import {
   View,
-  TextInput,
   Pressable,
   Text,
   SafeAreaView,
   ScrollView,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {WebView} from 'react-native-webview';
+
 import Loading from '../../components/Loading';
-import {
-  Appbar,
-  Avatar,
-  Button,
-  Card,
-  Title,
-  Paragraph,
-} from 'react-native-paper';
+import {Appbar, Card, Title, Paragraph} from 'react-native-paper';
 
 import TransactionContext from '../../context/transaction/TransactionContext';
 
 import MainStyle from '../../utils/MainStyle';
 import ShevronLeft from '../../assets/chevron-left';
-import CustomHeader from '../../components/CustomHeader';
 import utility from '../../utils/Utility';
 import styles from './styles';
 
@@ -37,6 +31,7 @@ export default function TransactionScreen({navigation}) {
     sk: '',
     pk: '0',
   });
+  const [web, seTweb] = useState(false);
 
   async function encrypData() {
     await utility.getItemObject('wkeys').then(keys => {
@@ -62,6 +57,11 @@ export default function TransactionScreen({navigation}) {
   );
 
   console.log('transactionHistory: ', transactionHistory);
+  const getTransaction = val => {
+    console.log('valll: ', val);
+    seTweb(true);
+    return <WebView source={{uri: 'https://reactnative.dev/'}} />;
+  };
   return (
     <Fragment>
       <Loading loading={loading_transaction} />
@@ -90,7 +90,15 @@ export default function TransactionScreen({navigation}) {
                         Id:{item.id} Status: {item.status}
                       </Title>
                       <Paragraph style={{fontWeight: 'bold'}}>
-                        From: <Paragraph>{item.fromAccount}</Paragraph>
+                        From:{' '}
+                        <Paragraph
+                          onPress={() =>
+                            navigation.navigate('TransactionHistoryScreen', {
+                              fromAccount: item.fromAccount,
+                            })
+                          }>
+                          {item.fromAccount}
+                        </Paragraph>
                       </Paragraph>
                       <Paragraph style={{fontWeight: 'bold'}}>
                         To:<Paragraph>{item.toAccount}</Paragraph>
