@@ -58,7 +58,7 @@ const MainScreens = () => {
           ),
         }}
       />
-
+      {/*
       <Tab.Screen
         name="Plugin"
         component={PluginScreen}
@@ -76,7 +76,7 @@ const MainScreens = () => {
             />
           ),
         }}
-      />
+      />*/}
     </Tab.Navigator>
   );
 };

@@ -9,7 +9,13 @@ import utility from '../../utils/Utility';
 import CustomModal from '../../components/CustomModal';
 import styles from '../EventsScreen/styles';
 
-export default function SendCoinsModal({visible, hideModal, item, id}) {
+export default function SendCoinsModal({
+  visible,
+  hideModal,
+  item,
+  id,
+  itemName,
+}) {
   const balanceContext = useContext(BalanceContext);
   const {postRateParticipant, loading} = balanceContext;
   const [encripted, seTencripted] = useState();
@@ -92,7 +98,7 @@ export default function SendCoinsModal({visible, hideModal, item, id}) {
     postRateParticipant(walletKeys, Number(price), item?.scAddr, encripted);
     hideModal();
   };
-
+  console.log('item:', item);
   return (
     <Fragment>
       <Portal>
@@ -106,7 +112,7 @@ export default function SendCoinsModal({visible, hideModal, item, id}) {
             mode="outlined"
             right={<TextInput.Icon name="barcode" onPress={startScan} />}
             style={styles.textInput}
-            value={item?.scAddr}
+            value={itemName}
             editable={false}
           />
           <TextInput

@@ -28,7 +28,7 @@ import utility from '../../utils/Utility';
 import BalanceModal from './balanceModal';
 import CartModal from './cartModal';
 import Loading from '../../components/Loading';
-import defaultImage from '../../assets/defaultImage.jpg';
+import defaultImage from '../../assets/defaultImage.png';
 
 const columns = [
   {
@@ -49,8 +49,15 @@ export default function EventsScreen({navigation}) {
   const balanceContext = useContext(BalanceContext);
   const ref = useRef(null);
   const toast = useToast();
-  const {loading, balance, getBalance, getRatings, rates, clearRatingsBalance} =
-    balanceContext;
+  const {
+    loading,
+    balance,
+    getBalance,
+    getRatings,
+    rates,
+    clearRatingsBalance,
+    getCountRating,
+  } = balanceContext;
 
   const [stavki, seTstavki] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -70,7 +77,8 @@ export default function EventsScreen({navigation}) {
     await utility.getItemObject('wkeys').then(keys => {
       if (keys) {
         getBalance(keys);
-        getRatings(columns, keys);
+        //  getRatings(columns, keys);
+        getCountRating(keys);
         seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       } else {
         seTwalletKeys({...walletKeys, sk: file?.sk, pk: file?.pk});
@@ -99,7 +107,7 @@ export default function EventsScreen({navigation}) {
 
     getData();
   }, [rates]);
-  console.log('reates: ', rates);
+
   const wait = timeout => {
     return new Promise(resolve => setTimeout(resolve, timeout));
   };
@@ -148,7 +156,7 @@ export default function EventsScreen({navigation}) {
             overflow: 'hidden',
           }}>
           <Image
-            source={require('../../assets/defaultImage.jpg')} //Change your icon image here
+            source={require('../../assets/defaultImage.png')} //Change your icon image here
             style={{height: 25, width: 25}}
           />
         </TouchableOpacity>

@@ -78,6 +78,7 @@ const BalanceState = props => {
       contractParams: formData,
     })
       .then(({data}) => {
+        console.log('data: 333', data);
         dispatch({type: LOADING, payload: false});
         if (data.success) {
           dispatch({
@@ -136,6 +137,108 @@ const BalanceState = props => {
         }
       })
       .catch(error => {
+        dispatch({type: LOADING, payload: false});
+        toast.show(error.message, {
+          type: 'warning',
+          duration: 3000,
+          animationType: 'zoom-in',
+        });
+      });
+  };
+
+  const trExtAll = async (transactionPackagedStr, keys) => {
+    const ALPHABET =
+      '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    const base58 = basex(ALPHABET);
+
+    let decodedFoBase58 = base58.decode(keys.sk);
+    const decryptedMessageFromByteArray = Base64.fromByteArray(decodedFoBase58);
+
+    let decoded = base58.decode(transactionPackagedStr);
+    const decrypted = Base64.fromByteArray(decoded);
+
+    let dt = await Sodium.crypto_sign_detached(
+      decrypted,
+      decryptedMessageFromByteArray,
+    );
+
+    let signature = base58.encode(Buffer.Buffer.from(dt, 'base64'));
+    console.log('signature: ', signature);
+    doPost('api/transaction/Execute', {
+      authKey: '',
+      NetworkAlias: 'MainNet',
+      MethodApi: 'SmartMethodExecute',
+      PublicKey: keys?.pk,
+      TokenPublicKey: 'Dp5sC3FTn7KTPdkH8t2s2r5dUvFqYo5Z32HzX8jsToDm',
+      TokenMethod: 'getTotalActiveEvents',
+      TransactionSignature: signature,
+      notSaveNewState: 1,
+      Fee: 0.1,
+      contractParams: [],
+    })
+      .then(({data}) => {
+        dispatch({type: LOADING, payload: false});
+        console.log(
+          'data eexxxm: ',
+          data.dataResponse.smartContractResult.slice(
+            18,
+            data.dataResponse.smartContractResult.length - 1,
+          ),
+        );
+        getRatings(
+          [
+            {
+              name: 'from',
+              valInt: 0,
+            },
+            {
+              name: 'to',
+              valInt: parseInt(
+                data.dataResponse.smartContractResult.slice(
+                  18,
+                  data.dataResponse.smartContractResult.length - 1,
+                ),
+              ),
+            },
+            {
+              name: 'direction',
+              valInt: 0,
+            },
+          ],
+          keys,
+        );
+      })
+      .catch(error => {
+        dispatch({type: LOADING, payload: false});
+        toast.show(error.message, {
+          type: 'warning',
+          duration: 3000,
+          animationType: 'zoom-in',
+        });
+      });
+  };
+
+  //Get count notices
+  const getCountRating = async keys => {
+    dispatch({type: LOADING, payload: true});
+    const contract = {
+      authKey: '',
+      NetworkAlias: 'MainNet',
+      MethodApi: 'SmartMethodExecute',
+      PublicKey: keys?.pk,
+      TokenPublicKey: 'Dp5sC3FTn7KTPdkH8t2s2r5dUvFqYo5Z32HzX8jsToDm',
+      TokenMethod: 'getTotalActiveEvents',
+      Fee: 0.1,
+      notSaveNewState: 1,
+      contractParams: [],
+    };
+
+    doPost('api/transaction/pack', contract)
+      .then(({data}) => {
+        trExtAll(data.dataResponse.transactionPackagedStr, keys);
+      })
+      .catch(error => {
+        console.log('dddd: ', error.response);
         dispatch({type: LOADING, payload: false});
         toast.show(error.message, {
           type: 'warning',
@@ -269,6 +372,7 @@ const BalanceState = props => {
         loading: state.loading,
         postRateParticipant,
         getRatings,
+        getCountRating,
         getBalance,
         clearRatingsBalance,
       }}>

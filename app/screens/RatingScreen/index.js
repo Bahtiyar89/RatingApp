@@ -24,6 +24,7 @@ export default function RatingScreen(props) {
 
   const [id, seTid] = useState();
   const [item, seTitem] = useState({});
+  const [itemName, seTitemName] = useState('');
   const [visibleModal, seTvisibleModal] = useState(false);
   useFocusEffect(
     React.useCallback(() => {
@@ -45,154 +46,103 @@ export default function RatingScreen(props) {
         <Text style={styles.legend}>{'Cобытия'}</Text>
         <Text style={styles.legend}>{item?.dt}</Text>
         <Text style={styles.legend}>{'Участники'}</Text>
-        {element.id1 != 'none' && (
+        {element.id1?.trim() != '' && (
           <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10,
-              width: '20%',
-              borderRadius: 20,
-            }}
+            style={styles.buttonStyle}
             onPress={() => {
               seTvisibleModal(!visibleModal);
               seTid('id1');
+              seTitemName(element.id1);
             }}>
             <Text>{element.id1}</Text>
           </TouchableOpacity>
         )}
-        {element.id2 != 'none' && (
+        {element.id2?.trim() != '' && (
           <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10,
-              marginTop: 10,
-              width: '20%',
-              borderRadius: 20,
-            }}
+            style={styles.buttonStyle}
             onPress={() => {
               seTvisibleModal(!visibleModal);
               seTid('id2');
+              seTitemName(element.id2);
             }}>
             <Text>{element.id2}</Text>
           </TouchableOpacity>
         )}
-        {element.id3 != 'none' && (
+        {element.id3?.trim() != '' ||
+          (element.id3.length == 0 && (
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              onPress={() => {
+                seTvisibleModal(!visibleModal);
+                seTid('id3');
+
+                seTitemName(element.id3);
+              }}>
+              <Text>{element.id3}</Text>
+            </TouchableOpacity>
+          ))}
+        {element.id4?.trim() != '' && (
           <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10,
-              marginTop: 10,
-              width: '20%',
-              borderRadius: 20,
-            }}
-            onPress={() => {
-              seTvisibleModal(!visibleModal);
-              seTid('id3');
-            }}>
-            <Text>{element.id3}</Text>
-          </TouchableOpacity>
-        )}
-        {element.id4 != 'none' && (
-          <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10,
-              marginTop: 10,
-              width: '20%',
-              borderRadius: 20,
-            }}
+            style={styles.buttonStyle}
             onPress={() => {
               seTvisibleModal(!visibleModal);
               seTid('id4');
+              seTitemName(element.id4);
             }}>
             <Text>{element.id4}</Text>
           </TouchableOpacity>
         )}
-        {element.id5 != 'none' && (
+        {element.id5?.trim() != '' && (
           <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10,
-              marginTop: 10,
-              width: '20%',
-              borderRadius: 20,
-            }}
+            style={styles.buttonStyle}
             onPress={() => {
               seTvisibleModal(!visibleModal);
               seTid('id5');
+              seTitemName(element.id5);
             }}>
             <Text>{element.id5}</Text>
           </TouchableOpacity>
         )}
-        {element.id6 != 'none' && (
+        {element.id6?.trim() != '' && (
           <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10,
-              marginTop: 10,
-              width: '20%',
-              borderRadius: 20,
-            }}
+            style={styles.buttonStyle}
             onPress={() => {
               seTvisibleModal(!visibleModal);
               seTid('id6');
+              seTitemName(element.id6);
             }}>
             <Text>{element.id6}</Text>
           </TouchableOpacity>
         )}
-        {element.id7 != 'none' && (
+        {element.id7?.trim() != '' && (
           <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10,
-              marginTop: 10,
-              width: '20%',
-              borderRadius: 20,
-            }}
+            style={styles.buttonStyle}
             onPress={() => {
               seTvisibleModal(!visibleModal);
               seTid('id7');
+              seTitemName(element.id7);
             }}>
             <Text>{element.id7}</Text>
           </TouchableOpacity>
         )}
-        {element.id8 != 'none' && (
+        {element.id8?.trim() != '' && (
           <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10,
-              marginTop: 10,
-              width: '20%',
-              borderRadius: 20,
-            }}
+            style={styles.buttonStyle}
             onPress={() => {
               seTvisibleModal(!visibleModal);
               seTid('id8');
+              seTitemName(element.id8);
             }}>
             <Text>{element.id8}</Text>
           </TouchableOpacity>
         )}
-        {element.id9 != 'none' && (
+        {element.id9?.trim() != '' && (
           <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              marginTop: 10,
-              padding: 10,
-              width: '20%',
-              borderRadius: 20,
-            }}
+            style={styles.buttonStyle}
             onPress={() => {
               seTvisibleModal(!visibleModal);
               seTid('id9');
+              seTitemName(element.id9);
             }}>
             <Text>{element.id9}</Text>
           </TouchableOpacity>
@@ -226,6 +176,7 @@ export default function RatingScreen(props) {
         hideModal={() => seTvisibleModal(false)}
         item={item}
         id={id}
+        itemName={itemName}
       />
     </Fragment>
   );
