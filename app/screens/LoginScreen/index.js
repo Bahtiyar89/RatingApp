@@ -16,9 +16,11 @@ import DocumentPicker, {
   types,
 } from 'react-native-document-picker';
 import {useToast} from 'react-native-toast-notifications';
+import {useFocusEffect} from '@react-navigation/native';
 
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
+import utility from '../../utils/Utility';
 
 const LoginScreen = ({navigation}) => {
   const authContext = useContext(AuthContext);
@@ -31,7 +33,10 @@ const LoginScreen = ({navigation}) => {
     sk: '',
   });
   const [result, setResult] = useState();
-
+  const [walletKeys, seTwalletKeys] = useState({
+    sk: '',
+    pk: '',
+  });
   const handleError = err => {
     if (DocumentPicker.isCancel(err)) {
       console.warn('cancelled');
@@ -45,6 +50,27 @@ const LoginScreen = ({navigation}) => {
     }
   };
 
+  async function encrypData() {
+    await utility.getItemObject('wkeys').then(keys => {
+      console.log('keys:3 ', keys);
+      if (keys) {
+        seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
+      } else {
+        seTwalletKeys({...walletKeys, sk: file?.sk, pk: file?.pk});
+      }
+    });
+  }
+  useFocusEffect(
+    React.useCallback(() => {
+      // Do something when the screen is focused
+      encrypData();
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+      };
+    }, []),
+  );
+
   useEffect(() => {
     if (result instanceof Array) {
       result.map(item => {
@@ -55,8 +81,8 @@ const LoginScreen = ({navigation}) => {
         });
         RNFS.readFile(item.fileCopyUri, 'utf8')
           .then(data => {
-            seTuserState({
-              ...userState,
+            seTwalletKeys({
+              ...walletKeys,
               pk: JSON.parse(data).pk,
               sk: JSON.parse(data).sk,
             });
@@ -74,14 +100,14 @@ const LoginScreen = ({navigation}) => {
   }, [result]);
 
   const submitLogin = () => {
-    if (userState.pk === '' || userState.sk === '') {
+    if (walletKeys.pk === '' || walletKeys.sk === '') {
       toast.show('Введите ключи', {
         type: 'success',
         duration: 4000,
         animationType: 'zoom-in',
       });
     } else {
-      signin(userState);
+      signin(walletKeys);
     }
   };
   return (
@@ -119,8 +145,8 @@ const LoginScreen = ({navigation}) => {
           <Text style={styles.legend}>Публичный ключ</Text>
           <TextInput
             style={[styles.input]}
-            onChangeText={val => seTuserState({...userState, pk: val})}
-            value={userState.pk}
+            onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
+            value={walletKeys.pk}
             placeholderTextColor={'#999CA0'}
             placeholder="FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht"
           />
@@ -129,8 +155,8 @@ const LoginScreen = ({navigation}) => {
           <View style={styles.inputWrapper}>
             <TextInput
               style={[styles.input]}
-              onChangeText={val => seTuserState({...userState, sk: val})}
-              value={userState.sk}
+              onChangeText={val => seTwalletKeys({...walletKeys, sk: val})}
+              value={walletKeys.sk}
               //secureTextEntry={passwordInputSecure}
               placeholderTextColor={'#999CA0'}
               placeholder={'FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht'}
