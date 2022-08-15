@@ -17,8 +17,8 @@ import {
   RefreshControl,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {useToast} from 'react-native-toast-notifications';
 
+import AuthContext from '../../context/auth/AuthContext';
 import styles from './styles';
 import {Appbar, Card, Title, Paragraph, Button} from 'react-native-paper';
 import {useFocusEffect} from '@react-navigation/native';
@@ -29,6 +29,7 @@ import BalanceModal from './balanceModal';
 import CartModal from './cartModal';
 import Loading from '../../components/Loading';
 import defaultImage from '../../assets/defaultImage.png';
+import SignOutIcon from '../../assets/signoutIcon';
 
 const columns = [
   {
@@ -48,7 +49,8 @@ const columns = [
 export default function EventsScreen({navigation}) {
   const balanceContext = useContext(BalanceContext);
   const ref = useRef(null);
-  const toast = useToast();
+  const authContext = useContext(AuthContext);
+  const {signOut} = authContext;
   const {
     loading,
     balance,
@@ -143,12 +145,9 @@ export default function EventsScreen({navigation}) {
           flexDirection: 'row',
           justifyContent: 'space-between',
         }}>
-        <View>
-          <Image
-            source={require('../../assets/star.png')} //Change your icon image here
-            style={{height: 25, width: 25}}
-          />
-        </View>
+        <TouchableOpacity onPress={signOut} style={styles.button}>
+          <SignOutIcon />
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={handlePress}
           style={{
