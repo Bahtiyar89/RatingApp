@@ -28,10 +28,6 @@ const LoginScreen = ({navigation}) => {
 
   const {signin, loading} = authContext;
 
-  const [userState, seTuserState] = useState({
-    pk: '',
-    sk: '',
-  });
   const [result, setResult] = useState();
   const [walletKeys, seTwalletKeys] = useState({
     sk: '',
