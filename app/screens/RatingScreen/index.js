@@ -17,6 +17,7 @@ import SendCoinsModal from './sendCoinsModal';
 import MainStyle from '../../utils/MainStyle';
 import styles from './styles';
 import Loading from '../../components/Loading';
+import ButtonComponent from './ButtonComponent';
 
 export default function RatingScreen(props) {
   const balanceContext = useContext(BalanceContext);
@@ -48,109 +49,89 @@ export default function RatingScreen(props) {
         <Text style={styles.legend}>{item?.dt}</Text>
         <Text style={styles.legend}>{'Участники'}</Text>
         {element.id1?.trim() != '' && element.id1?.trim() != 'none' && (
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setVisibleModal(!visibleModal);
-              setId('id1');
-              setItemName(element.id1);
-            }}>
-            <Text>{element.id1}</Text>
-          </TouchableOpacity>
+          <ButtonComponent
+            id={element.id1}
+            setmodal={() => setVisibleModal(!visibleModal)}
+            setId={() => setId('id1')}
+            setItemName={() => setItemName(element.id1)}
+          />
         )}
-        {element.id2?.trim() != '' && element.id2?.trim() != 'none' && (
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setVisibleModal(!visibleModal);
-              setId('id2');
-              setItemName(element.id2);
-            }}>
-            <Text>{element.id2}</Text>
-          </TouchableOpacity>
-        )}
-        {element.id3?.trim() != '' && element.id3?.trim() != 'none' && (
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setVisibleModal(!visibleModal);
-              setId('id3');
 
-              setItemName(element.id3);
-            }}>
-            <Text>{element.id3}</Text>
-          </TouchableOpacity>
+        {element.id2?.trim() != '' && element.id2?.trim() != 'none' && (
+          <ButtonComponent
+            id={element.id2}
+            setmodal={() => setVisibleModal(!visibleModal)}
+            setId={() => setId('id2')}
+            setItemName={() => setItemName(element.id2)}
+          />
         )}
+
+        {element.id3?.trim() != '' && element.id3?.trim() != 'none' && (
+          <ButtonComponent
+            id={element.id3}
+            setmodal={() => setVisibleModal(!visibleModal)}
+            setId={() => setId('id3')}
+            setItemName={() => setItemName(element.id3)}
+          />
+        )}
+
         {element.id4?.trim() != '' && element.id4?.trim() != 'none' && (
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setVisibleModal(!visibleModal);
-              setId('id4');
-              setItemName(element.id4);
-            }}>
-            <Text>{element.id4}</Text>
-          </TouchableOpacity>
+          <ButtonComponent
+            id={element.id4}
+            setmodal={() => setVisibleModal(!visibleModal)}
+            setId={() => setId('id4')}
+            setItemName={() => setItemName(element.id4)}
+          />
         )}
+
         {element.id5?.trim() != '' && element.id5?.trim() != 'none' && (
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setVisibleModal(!visibleModal);
-              setId('id5');
-              setItemName(element.id5);
-            }}>
-            <Text>{element.id5}</Text>
-          </TouchableOpacity>
+          <ButtonComponent
+            id={element.id5}
+            setmodal={() => setVisibleModal(!visibleModal)}
+            setId={() => setId('id5')}
+            setItemName={() => setItemName(element.id5)}
+          />
         )}
-        {element.id6?.trim() != '' && element.id5?.trim() != 'none' && (
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setVisibleModal(!visibleModal);
-              setId('id6');
-              setItemName(element.id6);
-            }}>
-            <Text>{element.id6}</Text>
-          </TouchableOpacity>
+
+        {element.id6?.trim() != '' && element.id6?.trim() != 'none' && (
+          <ButtonComponent
+            id={element.id6}
+            setmodal={() => setVisibleModal(!visibleModal)}
+            setId={() => setId('id6')}
+            setItemName={() => setItemName(element.id6)}
+          />
         )}
+
         {element.id7?.trim() != '' && element.id7?.trim() != 'none' && (
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setVisibleModal(!visibleModal);
-              setId('id7');
-              setItemName(element.id7);
-            }}>
-            <Text>{element.id7}</Text>
-          </TouchableOpacity>
+          <ButtonComponent
+            id={element.id7}
+            setmodal={() => setVisibleModal(!visibleModal)}
+            setId={() => setId('id7')}
+            setItemName={() => setItemName(element.id7)}
+          />
         )}
+
         {element.id8?.trim() != '' && element.id8?.trim() != 'none' && (
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setVisibleModal(!visibleModal);
-              setId('id8');
-              setItemName(element.id8);
-            }}>
-            <Text>{element.id8}</Text>
-          </TouchableOpacity>
+          <ButtonComponent
+            id={element.id8}
+            setmodal={() => setVisibleModal(!visibleModal)}
+            setId={() => setId('id8')}
+            setItemName={() => setItemName(element.id8)}
+          />
         )}
+
         {element.id9?.trim() != '' && element.id9?.trim() != 'none' && (
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setVisibleModal(!visibleModal);
-              setId('id9');
-              setItemName(element.id9);
-            }}>
-            <Text>{element.id9}</Text>
-          </TouchableOpacity>
+          <ButtonComponent
+            id={element.id9}
+            setmodal={() => setVisibleModal(!visibleModal)}
+            setId={() => setId('id9')}
+            setItemName={() => setItemName(element.id9)}
+          />
         )}
       </View>
     );
   };
-  console.log('loading: 2', loading);
+
   return (
     <Fragment>
       <Loading loading={loading} />
