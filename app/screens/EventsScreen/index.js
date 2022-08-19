@@ -145,7 +145,14 @@ export default function EventsScreen({navigation}) {
           flexDirection: 'row',
           justifyContent: 'space-between',
         }}>
-        <TouchableOpacity onPress={signOut} style={styles.button}>
+        <TouchableOpacity
+          onPress={signOut}
+          style={{
+            paddingHorizontal: 25,
+            height: 64,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
           <SignOutIcon />
         </TouchableOpacity>
         <TouchableOpacity

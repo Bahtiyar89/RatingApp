@@ -137,7 +137,12 @@ export default function RatingScreen(props) {
       <Loading loading={loading} />
       <Appbar.Header style={MainStyle.appBarThreeItems}>
         <Pressable
-          style={{alignSelf: 'center'}}
+          style={{
+            paddingHorizontal: 10,
+            height: 64,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
           onPress={() => props.navigation.goBack()}>
           <ShevronLeft />
         </Pressable>
