@@ -5,6 +5,7 @@ import Base64 from 'base64-js';
 import Buffer from 'buffer';
 import Sodium from 'react-native-sodium';
 
+import utility from '../../utils/Utility';
 import BalanceContext from './BalanceContext';
 import BalanceReducer from './BalanceReducer';
 import {doPost} from '../../utils/apiActions';
@@ -285,7 +286,11 @@ const BalanceState = props => {
       TransactionSignature: signature,
     })
       .then(({data}) => {
-        console.log('daaattaaa:execute', data);
+        console.log('daaattaaa:execute sended', data);
+        utility.setItemObject('lastTransaction', {
+          ReceiverPublicKey: addressPk,
+          Amount: price,
+        });
         dispatch({type: LOADING, payload: false});
         if (data.success) {
           toast.show('Транзакция отправлено', {

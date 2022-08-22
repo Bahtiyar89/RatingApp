@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {
   Text,
   Pressable,
@@ -7,11 +7,11 @@ import {
   View,
   SafeAreaView,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import QRCode from 'react-native-qrcode-svg';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { useFocusEffect } from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {
   TextInput,
   Appbar,
@@ -27,7 +27,7 @@ import styles from './styles';
 import ShevronLeft from '../../assets/chevron-left';
 
 import MainStyle from '../../utils/MainStyle';
-export default function BalanceSendScreen({ navigation }) {
+export default function BalanceSendScreen({navigation}) {
   const [replenish, seTreplenish] = useState('');
   const [send, seTsend] = useState('');
   const [amount, seTamount] = useState('');
@@ -42,9 +42,9 @@ export default function BalanceSendScreen({ navigation }) {
     await utility.getItemObject('wkeys').then(keys => {
       console.log('keys:3 ', keys);
       if (keys) {
-        seTwalletKeys({ ...walletKeys, sk: keys?.sk, pk: keys?.pk });
+        seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       } else {
-        seTwalletKeys({ ...walletKeys, sk: file?.sk, pk: file?.pk });
+        seTwalletKeys({...walletKeys, sk: file?.sk, pk: file?.pk});
       }
     });
   }
@@ -71,7 +71,7 @@ export default function BalanceSendScreen({ navigation }) {
     <Fragment>
       <Appbar.Header style={MainStyle.appBarThreeItems}>
         <Pressable
-          style={{ alignSelf: 'center' }}
+          style={{alignSelf: 'center'}}
           onPress={() => navigation.goBack()}>
           <ShevronLeft />
         </Pressable>
@@ -88,7 +88,7 @@ export default function BalanceSendScreen({ navigation }) {
                 onPress={() => console.log()}
                 style={[
                   styles.completeButton,
-                  { marginTop: 20, marginBottom: 20 },
+                  {marginTop: 20, marginBottom: 20},
                 ]}>
                 <Text style={styles.completeButtonText}>Пополнить баланс</Text>
               </Pressable>
@@ -111,7 +111,7 @@ export default function BalanceSendScreen({ navigation }) {
               />
               <Pressable
                 onPress={() => console.log()}
-                style={[styles.completeButton, { marginTop: 20 }]}>
+                style={[styles.completeButton, {marginTop: 20}]}>
                 <Text style={styles.completeButtonText}>Отправить баланс</Text>
               </Pressable>
             </View>
@@ -122,7 +122,7 @@ export default function BalanceSendScreen({ navigation }) {
                 <Text>закрыть сканирование</Text>
               </TouchableOpacity>
               <QRCodeScanner
-                containerStyle={{ position: 'absolute' }}
+                containerStyle={{position: 'absolute'}}
                 reactivate={true}
                 showMarker={true}
                 onRead={onSuccess}

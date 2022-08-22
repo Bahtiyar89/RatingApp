@@ -22,6 +22,8 @@ import AuthContext from '../../context/auth/AuthContext';
 import styles from './styles';
 import {Appbar, Card, Title, Paragraph, Button} from 'react-native-paper';
 import {useFocusEffect} from '@react-navigation/native';
+import {useToast} from 'react-native-toast-notifications';
+
 import BalanceContext from '../../context/balance/BalanceContext';
 import HomeBottomSheet from '../../components/HomeBottomSheet';
 import utility from '../../utils/Utility';
@@ -49,6 +51,8 @@ const columns = [
 export default function EventsScreen({navigation}) {
   const balanceContext = useContext(BalanceContext);
   const ref = useRef(null);
+  const toast = useToast();
+
   const authContext = useContext(AuthContext);
   const {signOut} = authContext;
   const {
@@ -88,11 +92,26 @@ export default function EventsScreen({navigation}) {
     });
   }
 
+  async function lastTransaction() {
+    await utility.getItemObject('lastTransaction').then(keys => {
+      if (keys) {
+        toast.show(
+          `В последнем транзакци сумма откравки: ${keys.Amount} swt в адрес: ${keys.ReceiverPublicKey} `,
+          {
+            type: 'success',
+            duration: 4000,
+            animationType: 'zoom-in',
+          },
+        );
+      }
+    });
+  }
+
   useFocusEffect(
     React.useCallback(() => {
       // Do something when the screen is focused
       encrypData();
-
+      lastTransaction();
       return () => {
         // Do something when the screen is unfocused
         // Useful for cleanup functions
