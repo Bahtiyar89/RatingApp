@@ -29,9 +29,9 @@ import HomeBottomSheet from '../../components/HomeBottomSheet';
 import utility from '../../utils/Utility';
 import BalanceModal from './balanceModal';
 import CartModal from './cartModal';
-import Loading from '../../components/Loading';
 import defaultImage from '../../assets/defaultImage.png';
 import SignOutIcon from '../../assets/signoutIcon';
+import CustomLoading from '../../components/CustomLoading';
 
 const columns = [
   {
@@ -155,7 +155,7 @@ export default function EventsScreen({navigation}) {
 
   return (
     <Fragment>
-      <Loading loading={loading} />
+      <CustomLoading loading={loading} />
       <Appbar.Header
         style={{
           backgroundColor: '#fff',

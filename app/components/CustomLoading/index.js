@@ -1,21 +1,15 @@
-import React, {Fragment} from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import React from 'react';
+import {View, Text} from 'react-native';
 import styles from './style';
-export default function CustomModal({loading}) {
-  return (
-    <Fragment>
+
+export default function CustomLoading({loading}) {
+  if (loading) {
+    return (
       <View style={styles.absolute}>
-        <View style={styles.shadowView}>
-          <View style={styles.modal}>
-            <ActivityIndicator
-              animating={loading}
-              size="large"
-              style={{opacity: 1}}
-              color="#999999"
-            />
-          </View>
-        </View>
+        <Text style={{fontWeight: '900'}}>Загружается в фоновом режиме...</Text>
       </View>
-    </Fragment>
-  );
+    );
+  } else {
+    return <View />;
+  }
 }
