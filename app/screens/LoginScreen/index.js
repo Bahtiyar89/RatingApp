@@ -30,8 +30,8 @@ const LoginScreen = ({navigation}) => {
 
   const [result, setResult] = useState();
   const [walletKeys, seTwalletKeys] = useState({
-    sk: '',
-    pk: '',
+    sk: 'FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht',
+    pk: 'FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht',
   });
   const handleError = err => {
     if (DocumentPicker.isCancel(err)) {

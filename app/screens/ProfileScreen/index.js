@@ -24,17 +24,16 @@ export default function ProfileScreen({navigation}) {
       <KeyboardAwareScrollView>
         <SafeAreaView style={styles.screen}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <Text style={styles.legend}>Фамилия</Text>
+            <Text style={styles.legend}>Фамилия Hojanova</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.legend}>Имя</Text>
+              <Text style={{color: 'blue', marginStart: 20}}>Sarvinaz </Text>
+            </View>
 
-            <Text style={styles.legend}>Имя</Text>
-
-            <Text style={styles.legend}>Отчество</Text>
-
-            <Text style={styles.legend}>Индекс</Text>
-
-            <Text style={styles.legend}>Адрес</Text>
-
-            <Text style={styles.legend}>Номер телефона</Text>
+            <Text style={styles.legend}>Отчество Nurgeldiyevna</Text>
+            <Text style={styles.legend}>Индекс 601419</Text>
+            <Text style={styles.legend}>Адрес Magdanly, Lebap velayat</Text>
+            <Text style={styles.legend}>Номер телефона 89914674947</Text>
           </ScrollView>
         </SafeAreaView>
       </KeyboardAwareScrollView>

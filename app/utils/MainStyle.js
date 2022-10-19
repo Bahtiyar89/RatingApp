@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
   },
   textSize: {
     fontSize: 18,
+    textAlign: 'center',
+    width: '100%',
   },
 });
 
