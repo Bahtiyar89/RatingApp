@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {ToastProvider} from 'react-native-toast-notifications';
@@ -5,6 +6,7 @@ import Entrypoint from './app/Entrypoint';
 import AuthState from './app/context/auth/AuthState';
 import TransactionState from './app/context/transaction/TransactionState';
 import BalanceState from './app/context/balance/BalanceState';
+import MyDrawer from './app/navigation/MyDrawer';
 
 const App = () => {
   return (
@@ -13,7 +15,7 @@ const App = () => {
         <TransactionState>
           <BalanceState>
             <PaperProvider>
-              <Entrypoint />
+              <MyDrawer />
             </PaperProvider>
           </BalanceState>
         </TransactionState>

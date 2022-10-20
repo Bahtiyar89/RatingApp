@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import AuthContext from './context/auth/AuthContext';
 import MainScreens from './navigation/MainScreens';
 import LoginScreens from './navigation/LoginScreens';
+import MyDrawer from './navigation/MyDrawer';
 
 const Entrypoint = () => {
   const authContext = useContext(AuthContext);
@@ -13,7 +14,7 @@ const Entrypoint = () => {
 
   return (
     <NavigationContainer>
-      {isSigned ? <MainScreens /> : <LoginScreens />}
+      <MyDrawer />
     </NavigationContainer>
   );
 };
