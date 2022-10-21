@@ -22,10 +22,14 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   title: {
-    fontSize: 25,
-    lineHeight: 30,
+    fontSize: 36.79,
+    lineHeight: 43.47,
     alignSelf: 'center',
-    color: Colors.black,
+    color: '#FFFFFF',
+    marginTop: 138,
+    fontFamily: 'SF Pro Display',
+    fontWeight: '900',
+    fontStyle: 'italic',
   },
   blueColor: {
     color: Colors.blue,
@@ -58,9 +62,13 @@ const styles = StyleSheet.create({
     color: Colors.black,
   },
   legend: {
-    fontSize: 16,
+    fontSize: 14,
     lineHeight: 24,
-    color: Colors.black,
+    color: '#FFFFFF',
+    fontFamily: 'Roboto',
+    fontWeight: '400',
+    lineHeight: 13,
+    marginBottom: 6,
   },
   error: {
     fontSize: 14,
@@ -69,14 +77,14 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
-    height: 48,
-    borderRadius: 8,
+    height: 40,
+    borderRadius: 10,
     width: '100%',
     paddingVertical: 12,
     paddingHorizontal: 16,
     marginBottom: 8,
-    color: Colors.white,
-    backgroundColor: Colors.black,
+    color: '#FFFFFF30%',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
   },
 
   inputError: {

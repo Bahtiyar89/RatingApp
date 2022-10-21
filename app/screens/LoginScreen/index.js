@@ -128,10 +128,7 @@ const LoginScreen = ({navigation}) => {
       <KeyboardAwareScrollView>
         <SafeAreaView style={styles.screen}>
           <View style={styles.titleContainer}>
-            <Text style={[styles.title]}>
-              Привет, авторизуйся
-              <Text style={styles.blueColor}> Тут!</Text>
-            </Text>
+            <Text style={[styles.title]}>CryptoXBET</Text>
           </View>
 
           <Text style={styles.legend}>Публичный ключ</Text>
