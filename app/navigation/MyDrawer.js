@@ -16,7 +16,6 @@ function HomeDrawerStack() {
   return (
     <HomeStack.Navigator screenOptions={({route}) => ({headerShown: false})}>
       <HomeStack.Screen name="MainScreen" component={MainScreen} />
-      <HomeStack.Screen name="LoginScreen" component={LoginScreen} />
     </HomeStack.Navigator>
   );
 }
@@ -53,45 +52,6 @@ export default function MyDrawer({navigation}) {
           backgroundColor: '#A8A8A8',
         },
         headerShown: false,
-        headerStyle: {
-          backgroundColor: 'transparent',
-        },
-        headerRight: props => {
-          console.log('props:2 ', props);
-          return (
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                width: '60%',
-              }}>
-              <TouchableOpacity
-                style={{
-                  paddingTop: 4,
-                  paddingRight: 12,
-                  paddingBottom: 4,
-                  paddingLeft: 12,
-                  borderRadius: 8,
-                  backgroundColor: '#fff',
-                }}
-                onPress={() => navigation.navigate('')}>
-                <Text>Регистрация</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  paddingTop: 4,
-                  paddingRight: 12,
-                  paddingBottom: 4,
-                  paddingLeft: 12,
-                  borderRadius: 8,
-                  backgroundColor: '#fff',
-                }}
-                onPress={() => navigation.navigate('LoginScreen')}>
-                <Text>Вход</Text>
-              </TouchableOpacity>
-            </View>
-          );
-        },
       }}>
       <Drawer.Screen
         name="HomeDrawerStack"

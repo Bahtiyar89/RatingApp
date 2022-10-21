@@ -35,7 +35,7 @@ const MainScreen = ({navigation}) => {
             style={{
               flexDirection: 'row',
               justifyContent: 'space-around',
-              width: '60%',
+              width: '50%',
             }}>
             <TouchableOpacity
               style={{

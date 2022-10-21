@@ -14,7 +14,7 @@ const Entrypoint = () => {
 
   return (
     <NavigationContainer>
-      <MainScreens />
+      {isSigned ? <MainScreens /> : <LoginScreens />}
     </NavigationContainer>
   );
 };

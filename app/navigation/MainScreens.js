@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Button, Image, StyleSheet, Text, View} from 'react-native';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import AuthContext from '../context/auth/AuthContext';
 import PluginScreen from '../screens/PluginScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import EventsScreen from '../screens/EventsScreen';
@@ -16,8 +17,12 @@ import HistoryRating from '../assets/tabImages/historyRatingSvg';
 import HomeSvg from '../assets/tabImages/HomeSvg';
 import BillSvg from '../assets/tabImages/BillSvg';
 import ProfileSvg from '../assets/tabImages/ProfileSvg';
+import HistoryScreen from '../screens/HistoryScreen';
+import LoginScreen from '../screens/LoginScreen';
+import SignUpScreen from '../screens/SignUpScreen';
 
 const Tab = createBottomTabNavigator();
+const LoginStack = createNativeStackNavigator();
 
 const HomeStack = createNativeStackNavigator();
 function HomeStackScreen() {
@@ -42,7 +47,19 @@ function HomeStackScreen() {
   );
 }
 
+function LoginScreens() {
+  return (
+    <LoginStack.Navigator screenOptions={({route}) => ({headerShown: false})}>
+      <LoginStack.Screen name="LoginScreen" component={LoginScreen} />
+      <LoginStack.Screen name="SignUpScreen" component={SignUpScreen} />
+    </LoginStack.Navigator>
+  );
+}
+
 const MainScreens = () => {
+  const authContext = useContext(AuthContext);
+
+  const {isSigned} = authContext;
   return (
     <Tab.Navigator screenOptions={{}}>
       <Tab.Screen
@@ -56,8 +73,8 @@ const MainScreens = () => {
       />
 
       <Tab.Screen
-        name="Plugin"
-        component={PluginScreen}
+        name="HistoryScreen"
+        component={isSigned ? HistoryScreen : LoginScreens}
         options={{
           headerShown: false,
           tabBarLabel: 'История ставок',

@@ -17,6 +17,7 @@ import DocumentPicker, {
 } from 'react-native-document-picker';
 import {useToast} from 'react-native-toast-notifications';
 import {useFocusEffect} from '@react-navigation/native';
+import {RadialGradient} from 'react-native-gradients';
 
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
@@ -53,7 +54,7 @@ const LoginScreen = ({navigation}) => {
       if (keys) {
         seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       } else {
-        seTwalletKeys({...walletKeys, sk: file?.sk, pk: file?.pk});
+        seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       }
     });
   }
@@ -107,31 +108,27 @@ const LoginScreen = ({navigation}) => {
       signin(walletKeys);
     }
   };
+
+  const BackgroundGradient = ({style, children}) => (
+    <View
+      style={[
+        {
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+        },
+        style,
+      ]}>
+      <RadialGradient />
+    </View>
+  );
+
   return (
     <Fragment>
       <Loading loading={loading} />
-      <Appbar.Header
-        style={{
-          backgroundColor: '#f2f3f7',
-        }}>
-        <Pressable
-          style={{
-            marginLeft: 5,
-            alignSelf: 'center',
-          }}
-          onPress={() => navigation.goBack()}>
-          <ShevronLeft />
-        </Pressable>
-      </Appbar.Header>
-
+      <BackgroundGradient />
       <KeyboardAwareScrollView>
         <SafeAreaView style={styles.screen}>
-          <View style={styles.container}>
-            <Text style={styles.haveAnAccountText}>У вас нет аккаунта?</Text>
-            <Pressable onPress={() => navigation.navigate('SignUpScreen')}>
-              <Text style={styles.logInSignUpButton}>Регистрация</Text>
-            </Pressable>
-          </View>
           <View style={styles.titleContainer}>
             <Text style={[styles.title]}>
               Привет, авторизуйся
