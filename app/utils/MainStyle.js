@@ -2,6 +2,11 @@ import {StyleSheet} from 'react-native';
 import Colors from '../constants/Сolors';
 
 const styles = StyleSheet.create({
+  gradientHeader: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
   appBarThreeItems: {
     paddingVertical: 16,
     paddingHorizontal: 15,

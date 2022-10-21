@@ -17,12 +17,13 @@ import DocumentPicker, {
 } from 'react-native-document-picker';
 import {useToast} from 'react-native-toast-notifications';
 import {useFocusEffect} from '@react-navigation/native';
-import {RadialGradient} from 'react-native-gradients';
+import LinearGradient from 'react-native-linear-gradient';
 
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import utility from '../../utils/Utility';
-import ShevronLeft from '../../assets/chevron-left';
+import MainStyle from '../../utils/MainStyle';
+import {colorList} from '../../utils/GradientColors';
 
 const LoginScreen = ({navigation}) => {
   const authContext = useContext(AuthContext);
@@ -109,24 +110,21 @@ const LoginScreen = ({navigation}) => {
     }
   };
 
-  const BackgroundGradient = ({style, children}) => (
-    <View
-      style={[
-        {
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-        },
-        style,
-      ]}>
-      <RadialGradient />
-    </View>
-  );
-
   return (
-    <Fragment>
+    <LinearGradient
+      start={{x: 0.0, y: 0.1}}
+      end={{x: 0.5, y: 1.0}}
+      locations={[0, 0.5, 0.6]}
+      colors={['#4c669f', '#3b5998', '#192f6a']}
+      style={{
+        flex: 1,
+        shadowColor: '#fff',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      }}>
       <Loading loading={loading} />
-      <BackgroundGradient />
+
       <KeyboardAwareScrollView>
         <SafeAreaView style={styles.screen}>
           <View style={styles.titleContainer}>
@@ -189,7 +187,7 @@ const LoginScreen = ({navigation}) => {
           </View>
         </SafeAreaView>
       </KeyboardAwareScrollView>
-    </Fragment>
+    </LinearGradient>
   );
 };
 
