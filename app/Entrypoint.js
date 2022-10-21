@@ -14,7 +14,7 @@ const Entrypoint = () => {
 
   return (
     <NavigationContainer>
-      <MyDrawer />
+      <MainScreens />
     </NavigationContainer>
   );
 };

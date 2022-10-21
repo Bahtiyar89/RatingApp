@@ -378,8 +378,37 @@ PODS:
     - React-Core
   - RNFS (2.20.0):
     - React-Core
+  - RNGestureHandler (2.7.1):
+    - React-Core
   - RNPermissions (3.6.0):
     - React-Core
+  - RNReanimated (2.11.0):
+    - DoubleConversion
+    - FBLazyVector
+    - FBReactNativeSpec
+    - glog
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTBlob
+    - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNScreens (3.15.0):
     - React-Core
     - React-RCTImage
@@ -457,7 +486,9 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - RNFS (from `../node_modules/react-native-fs`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -562,8 +593,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-clipboard/clipboard"
   RNFS:
     :path: "../node_modules/react-native-fs"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -627,7 +662,9 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: d81ee5c3db1060afd49ea7045ad460eff82d2b7d
   RNCClipboard: f1736c75ab85b627a4d57587edb4b60999c4dd80
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
+  RNGestureHandler: b7a872907ee289ada902127f2554fa1d2c076122
   RNPermissions: de7b7c3fe1680d974ac7a85e3e97aa539c0e68ea
+  RNReanimated: 27f454b87a848f329acc7302816ecf63ac539509
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
   RNSVG: 3dd44d99d1c18e1342aee4bfa53ab3f6a8c4865f
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8

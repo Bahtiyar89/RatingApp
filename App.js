@@ -6,7 +6,6 @@ import Entrypoint from './app/Entrypoint';
 import AuthState from './app/context/auth/AuthState';
 import TransactionState from './app/context/transaction/TransactionState';
 import BalanceState from './app/context/balance/BalanceState';
-import MyDrawer from './app/navigation/MyDrawer';
 
 const App = () => {
   return (
@@ -15,7 +14,7 @@ const App = () => {
         <TransactionState>
           <BalanceState>
             <PaperProvider>
-              <MyDrawer />
+              <Entrypoint />
             </PaperProvider>
           </BalanceState>
         </TransactionState>

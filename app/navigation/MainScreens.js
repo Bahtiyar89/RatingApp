@@ -11,6 +11,11 @@ import BalanceSendScreen from '../screens/BalanceSend';
 import RatingScreen from '../screens/RatingScreen';
 import TransactionScreen from '../screens/TransactionScreen';
 import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
+import MyDrawer from './MyDrawer';
+import HistoryRating from '../assets/tabImages/historyRatingSvg';
+import HomeSvg from '../assets/tabImages/HomeSvg';
+import BillSvg from '../assets/tabImages/BillSvg';
+import ProfileSvg from '../assets/tabImages/ProfileSvg';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,44 +44,45 @@ function HomeStackScreen() {
 
 const MainScreens = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{}}>
       <Tab.Screen
-        name="Detector"
-        component={HomeStackScreen}
+        name="MainScreenTab"
+        component={MyDrawer}
         options={{
           headerShown: false,
-          title: 'События',
-          tabBarIcon: ({focused}) => (
-            <Image
-              source={require('../assets/home.png')} //Change your icon image here
-              style={{
-                height: 25,
-                width: 25,
-                tintColor: focused ? '#4d94ff' : '#666666',
-              }}
-            />
-          ),
+          tabBarLabel: 'Главная',
+          tabBarIcon: ({focused}) => <HomeSvg focused={focused} />,
         }}
       />
-      {/*
+
       <Tab.Screen
         name="Plugin"
         component={PluginScreen}
         options={{
           headerShown: false,
-          title: 'Следующая',
-          tabBarIcon: ({focused}) => (
-            <Image
-              source={require('../assets/sensor.png')} //Change your icon image here
-              style={{
-                height: 25,
-                width: 25,
-                tintColor: focused ? '#4d94ff' : '#666666',
-              }}
-            />
-          ),
+          tabBarLabel: 'История ставок',
+
+          tabBarIcon: ({focused}) => <HistoryRating focused={focused} />,
         }}
-      />*/}
+      />
+      <Tab.Screen
+        name="RefillScreen"
+        component={PluginScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Счет',
+          tabBarIcon: ({focused}) => <BillSvg focused={focused} />,
+        }}
+      />
+      <Tab.Screen
+        name="ProfileScreen"
+        component={PluginScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Профиль',
+          tabBarIcon: ({focused}) => <ProfileSvg focused={focused} />,
+        }}
+      />
     </Tab.Navigator>
   );
 };

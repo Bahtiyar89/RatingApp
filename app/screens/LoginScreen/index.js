@@ -21,6 +21,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import utility from '../../utils/Utility';
+import ShevronLeft from '../../assets/chevron-left';
 
 const LoginScreen = ({navigation}) => {
   const authContext = useContext(AuthContext);
@@ -111,16 +112,16 @@ const LoginScreen = ({navigation}) => {
       <Loading loading={loading} />
       <Appbar.Header
         style={{
-          backgroundColor: '#fff',
-          borderBottomWidth: 1,
-          borderBottomColor: '#003143',
+          backgroundColor: '#f2f3f7',
         }}>
-        <View style={{width: '100%'}}>
-          <Image
-            source={require('../../assets/star.png')} //Change your icon image here
-            style={{height: 25, width: 25}}
-          />
-        </View>
+        <Pressable
+          style={{
+            marginLeft: 5,
+            alignSelf: 'center',
+          }}
+          onPress={() => navigation.goBack()}>
+          <ShevronLeft />
+        </Pressable>
       </Appbar.Header>
 
       <KeyboardAwareScrollView>
