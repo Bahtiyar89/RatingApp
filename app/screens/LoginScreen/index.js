@@ -17,13 +17,13 @@ import DocumentPicker, {
 } from 'react-native-document-picker';
 import {useToast} from 'react-native-toast-notifications';
 import {useFocusEffect} from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
 
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import utility from '../../utils/Utility';
 import MainStyle from '../../utils/MainStyle';
 import {colorList} from '../../utils/GradientColors';
+import GradientSvg from '../../assets/GradientSvg';
 
 const LoginScreen = ({navigation}) => {
   const authContext = useContext(AuthContext);
@@ -111,18 +111,17 @@ const LoginScreen = ({navigation}) => {
   };
 
   return (
-    <LinearGradient
-      start={{x: 0.0, y: 0.1}}
-      end={{x: 0.5, y: 1.0}}
-      locations={[0, 0.5, 0.6]}
-      colors={['#4c669f', '#3b5998', '#192f6a']}
-      style={{
-        flex: 1,
-        shadowColor: '#fff',
-        shadowOffset: {width: -2, height: 4},
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-      }}>
+    <Fragment>
+      <Loading loading={loading} />
+      <GradientSvg
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }}
+      />
       <Loading loading={loading} />
 
       <KeyboardAwareScrollView>
@@ -184,7 +183,7 @@ const LoginScreen = ({navigation}) => {
           </View>
         </SafeAreaView>
       </KeyboardAwareScrollView>
-    </LinearGradient>
+    </Fragment>
   );
 };
 
