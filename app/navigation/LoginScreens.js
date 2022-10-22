@@ -6,11 +6,19 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
 import Logo from '../assets/logo.svg';
 import SignUpScreen from '../screens/SignUpScreen';
+import LoginMainScreen from '../screens/LoginMainScreen';
 const Stack = createNativeStackNavigator();
 
 const LoginScreens = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="LoginMainScreen"
+        component={LoginMainScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
