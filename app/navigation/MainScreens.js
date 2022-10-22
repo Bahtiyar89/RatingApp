@@ -28,7 +28,8 @@ const HomeStack = createNativeStackNavigator();
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator screenOptions={({route}) => ({headerShown: false})}>
-      <HomeStack.Screen name="Events" component={EventsScreen} />
+      {/*  <HomeStack.Screen name="Events" component={EventsScreen} />*/}
+      <HomeStack.Screen name="MainScreens" component={MainScreens} />
       <HomeStack.Screen name="ProfileScreen" component={ProfileScreen} />
       <HomeStack.Screen name="RatingScreen" component={RatingScreen} />
       <HomeStack.Screen
@@ -64,7 +65,7 @@ const MainScreens = () => {
     <Tab.Navigator screenOptions={{}}>
       <Tab.Screen
         name="MainScreenTab"
-        component={MyDrawer}
+        component={HomeStackScreen}
         options={{
           headerShown: false,
           tabBarLabel: 'Главная',
@@ -74,7 +75,7 @@ const MainScreens = () => {
 
       <Tab.Screen
         name="HistoryScreen"
-        component={isSigned ? HistoryScreen : LoginScreens}
+        component={HistoryScreen}
         options={{
           headerShown: false,
           tabBarLabel: 'История ставок',
