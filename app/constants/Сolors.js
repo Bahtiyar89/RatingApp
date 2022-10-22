@@ -6,6 +6,8 @@ const Colors = {
   darkestBlue: '#131527',
   white: '#FFFFFF',
   black: '#000000',
+  blacker: '#333333',
+  blackerSlow: '#8E8E93',
   blackTrans: 'rgba(000,000,000, 0.6)',
   darkGreen: '#122816',
   green: '#13572C',

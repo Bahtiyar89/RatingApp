@@ -111,6 +111,7 @@ const AuthState = props => {
 
   //Login User
   const signin = FormData => {
+    console.log('FormData: ', FormData);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: FormData,

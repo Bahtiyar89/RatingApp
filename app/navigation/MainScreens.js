@@ -20,6 +20,7 @@ import ProfileSvg from '../assets/tabImages/ProfileSvg';
 import HistoryScreen from '../screens/HistoryScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
+import MainScreen from '../screens/MainScreen';
 
 const Tab = createBottomTabNavigator();
 const LoginStack = createNativeStackNavigator();
@@ -29,7 +30,7 @@ function HomeStackScreen() {
   return (
     <HomeStack.Navigator screenOptions={({route}) => ({headerShown: false})}>
       {/*  <HomeStack.Screen name="Events" component={EventsScreen} />*/}
-      <HomeStack.Screen name="MainScreens" component={MainScreens} />
+      <HomeStack.Screen name="MainScreen" component={MainScreen} />
       <HomeStack.Screen name="ProfileScreen" component={ProfileScreen} />
       <HomeStack.Screen name="RatingScreen" component={RatingScreen} />
       <HomeStack.Screen

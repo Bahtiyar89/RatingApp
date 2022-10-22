@@ -34,7 +34,7 @@ const LoginScreen = ({navigation}) => {
 
   const [result, setResult] = useState();
   const [walletKeys, seTwalletKeys] = useState({
-    sk: 'FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht',
+    sk: '3i8tu4DsTrZKUAZRUjqxvpVT4Xycve8doNbwyGVuBJ8nRtZxEMBbNBD5PfBpTdgV36uPPKtkoCG3EwgoVdPuFsm8',
     pk: 'FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht',
   });
   const handleError = err => {
@@ -53,9 +53,8 @@ const LoginScreen = ({navigation}) => {
   async function encrypData() {
     await utility.getItemObject('wkeys').then(keys => {
       console.log('keys:3 ', keys);
-      if (keys) {
-        seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
-      } else {
+      if (Object.keys(keys).length != 0) {
+        console.log('ccc:');
         seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       }
     });
@@ -113,6 +112,7 @@ const LoginScreen = ({navigation}) => {
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
+  console.log('walletKeys: ', walletKeys);
   return (
     <Fragment>
       <Loading loading={loading} />
