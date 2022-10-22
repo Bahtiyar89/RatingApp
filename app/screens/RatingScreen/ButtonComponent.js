@@ -16,7 +16,7 @@ export default function ButtonComponent(props) {
           setId();
           setItemName();
         }}>
-        <Text style={[{color: itemName === id ? '#FFFFFF' : '##8E8E93'}]}>
+        <Text style={[{color: itemName === id ? '#FFFFFF' : '#8E8E93'}]}>
           {id}
         </Text>
       </TouchableOpacity>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext, Fragment} from 'react';
-import {Text, Pressable} from 'react-native';
-import {Modal, Portal, TextInput} from 'react-native-paper';
+import {View, TouchableOpacity, Text, Pressable} from 'react-native';
+import {TextInput} from 'react-native-paper';
 import {useFocusEffect} from '@react-navigation/native';
 import Buffer from 'buffer';
 
@@ -101,34 +101,83 @@ export default function SendCoinsModal({
   console.log('item:', item);
   return (
     <Fragment>
-      <Portal>
-        <Modal
-          visible={visible}
-          onDismiss={hideModal}
-          contentContainerStyle={containerStyle}>
-          <Text style={styles.textparagraph}>Адрес отправки</Text>
-          <TextInput
-            label={'получатель'}
-            mode="outlined"
-            right={<TextInput.Icon name="barcode" onPress={startScan} />}
-            style={styles.textInput}
-            value={itemName}
-            editable={false}
-          />
-          <TextInput
-            label={'сумма swt'}
-            mode="outlined"
-            style={styles.textInput}
-            value={price}
-            onChangeText={text => seTprice(text)}
-          />
-          <Pressable
-            onPress={handleSendCoins}
-            style={[styles.completeButton, {marginTop: 20}]}>
-            <Text style={styles.completeButtonText}>Отправить баланс</Text>
-          </Pressable>
-        </Modal>
-      </Portal>
+      <Text style={styles.legend}>{'Введите сумму'}</Text>
+      <TextInput
+        style={[
+          {
+            paddingLeft: 8,
+            marginTop: 8,
+            fontSize: 13,
+            height: 40,
+            borderRadius: 10,
+            width: '100%',
+            color: '#FFFFFF30%',
+            backgroundColor: '#F2F3F7',
+          },
+        ]}
+        onChangeText={text => seTprice(text)}
+        value={price}
+        placeholderTextColor={'#B3B8C6'}
+        placeholder="от 1 SWT"
+      />
+      <View style={{flexDirection: 'row', marginTop: 8}}>
+        <TouchableOpacity
+          style={{
+            borderRadius: 8,
+            backgroundColor: '#F2F3F7',
+            padding: 5,
+          }}>
+          <Text>10 SWT</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            borderRadius: 8,
+            backgroundColor: '#F2F3F7',
+            marginLeft: 10,
+            padding: 5,
+          }}>
+          <Text>20 SWT</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            borderRadius: 8,
+            backgroundColor: '#F2F3F7',
+            marginLeft: 10,
+            padding: 5,
+          }}>
+          <Text>100 SWT</Text>
+        </TouchableOpacity>
+      </View>
+      <Text style={styles.legend}>{'Сумма возможного выигрыша'}</Text>
+      <View style={{flexDirection: 'row', marginTop: 8}}>
+        <TouchableOpacity
+          style={{
+            borderRadius: 8,
+            backgroundColor: '#F2F3F7',
+            padding: 5,
+          }}>
+          <Text>0 SWT</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
+        onPress={handleSendCoins}
+        style={{
+          marginTop: 35,
+          borderRadius: 8,
+          backgroundColor: '#6248FF',
+          padding: 13,
+        }}>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: '500',
+            textAlign: 'center',
+            color: 'white',
+          }}>
+          Сделать ставку
+        </Text>
+      </TouchableOpacity>
     </Fragment>
   );
 }

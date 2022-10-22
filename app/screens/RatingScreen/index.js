@@ -214,93 +214,18 @@ export default function RatingScreen(props) {
               }}>
               <Card.Content>
                 {[item].map(element => renderItem(element))}
-                <Text style={styles.legend}>{'Введите сумму'}</Text>
-                <TextInput
-                  style={[
-                    {
-                      paddingLeft: 8,
-                      marginTop: 8,
-                      fontSize: 13,
-                      height: 40,
-                      borderRadius: 10,
-                      width: '100%',
-                      color: '#FFFFFF30%',
-                      backgroundColor: '#F2F3F7',
-                    },
-                  ]}
-                  onChangeText={val => setResult(val)}
-                  value={result}
-                  placeholderTextColor={'#B3B8C6'}
-                  placeholder="от 1 SWT"
+                <SendCoinsModal
+                  visible={visibleModal}
+                  hideModal={() => setVisibleModal(false)}
+                  item={item}
+                  id={id}
+                  itemName={itemName}
                 />
-                <View style={{flexDirection: 'row', marginTop: 8}}>
-                  <TouchableOpacity
-                    style={{
-                      borderRadius: 8,
-                      backgroundColor: '#F2F3F7',
-                      padding: 5,
-                    }}>
-                    <Text>10 SWT</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={{
-                      borderRadius: 8,
-                      backgroundColor: '#F2F3F7',
-                      marginLeft: 10,
-                      padding: 5,
-                    }}>
-                    <Text>20 SWT</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={{
-                      borderRadius: 8,
-                      backgroundColor: '#F2F3F7',
-                      marginLeft: 10,
-                      padding: 5,
-                    }}>
-                    <Text>100 SWT</Text>
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.legend}>{'Сумма возможного выигрыша'}</Text>
-                <View style={{flexDirection: 'row', marginTop: 8}}>
-                  <TouchableOpacity
-                    style={{
-                      borderRadius: 8,
-                      backgroundColor: '#F2F3F7',
-                      padding: 5,
-                    }}>
-                    <Text>0 SWT</Text>
-                  </TouchableOpacity>
-                </View>
-                <TouchableOpacity
-                  style={{
-                    marginTop: 35,
-                    borderRadius: 8,
-                    backgroundColor: '#6248FF',
-                    padding: 13,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 18,
-                      fontWeight: '500',
-                      textAlign: 'center',
-                      color: 'white',
-                    }}>
-                    Сделать ставку
-                  </Text>
-                </TouchableOpacity>
               </Card.Content>
             </Card>
           </ScrollView>
         </SafeAreaView>
       </KeyboardAwareScrollView>
-      <SendCoinsModal
-        visible={visibleModal}
-        hideModal={() => setVisibleModal(false)}
-        item={item}
-        id={id}
-        itemName={itemName}
-      />
     </Fragment>
   );
 }
