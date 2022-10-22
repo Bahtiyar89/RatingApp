@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useToast} from 'react-native-toast-notifications';
@@ -19,6 +20,7 @@ import Logo from '../../assets/logo.svg';
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import styles from './styles';
+import GradientSvg from '../../assets/GradientSvg';
 
 export default function SignUpScreen({navigation}) {
   const toast = useToast();
@@ -71,81 +73,75 @@ export default function SignUpScreen({navigation}) {
   return (
     <Fragment>
       <Loading loading={loading} />
-      <Appbar.Header
+      <GradientSvg
         style={{
-          backgroundColor: '#fff',
-          borderBottomWidth: 1,
-          borderBottomColor: '#003143',
-        }}>
-        <View style={{width: '100%'}}>
-          <Image
-            source={require('../../assets/sensor.png')} //Change your icon image here
-            style={{height: 25, width: 25}}
-          />
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }}
+      />
+
+      <SafeAreaView style={styles.screen}>
+        <View style={styles.container}>
+          <Pressable onPress={() => navigation.navigate('LoginScreen')}>
+            <Text style={styles.logInSignUpButton}>Логин</Text>
+          </Pressable>
         </View>
-      </Appbar.Header>
-      <KeyboardAwareScrollView>
-        <SafeAreaView style={styles.screen}>
-          <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <View style={styles.container}>
-              <Text style={styles.haveAnAccountText}>
-                У вас уже есть аккаунт?
-              </Text>
-              <Pressable onPress={() => navigation.navigate('LoginScreen')}>
-                <Text style={styles.logInSignUpButton}>Логин</Text>
-              </Pressable>
-            </View>
-            <View style={styles.titleContainer}>
-              <Text
-                style={[styles.title, styles.blueColor, {marginBottom: 20}]}>
-                Новый пользователь
-              </Text>
-            </View>
+        <View style={styles.titleContainer}>
+          <Text style={[styles.title]}>CryptoXBET</Text>
+        </View>
 
-            <Button
-              icon="lead-pencil"
-              style={{
-                width: '100%',
-                marginTop: 10,
-                marginBottom: 10,
-              }}
-              disabled={
-                walletKeys.pk.length === 44 && walletKeys.sk.length === 88
-              }
-              onPress={generateKeys}
-              mode="contained">
-              <Text style={{textAlign: 'center', color: '#000'}}>
-                generateKeys
-              </Text>
-            </Button>
+        <TouchableOpacity style={{marginTop: 45}}>
+          <Text style={styles.buttonStyle}>Сгенерировать ключи</Text>
+        </TouchableOpacity>
 
-            <View style={{marginTop: 5, flexDirection: 'row', width: '90%'}}>
-              <Text style={{flex: 1}}>Public key</Text>
-            </View>
-            <TextInput
-              placeholder={'Public key'}
-              mode="outlined"
-              style={styles.input}
-              onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
-              value={walletKeys.pk}
-            />
-            <View style={{marginTop: 5, flexDirection: 'row', width: '90%'}}>
-              <Text style={{flex: 1}}>Secret key</Text>
-            </View>
-            <TextInput
-              placeholder={'Secret key'}
-              mode="outlined"
-              style={styles.input}
-              onChangeText={val => seTwalletKeys({...walletKeys, sk: val})}
-              value={walletKeys.sk}
-            />
-
-            <Pressable onPress={submit} style={[styles.completeButton]}>
-              <Text style={styles.completeButtonText}>Зарегистрироваться</Text>
-            </Pressable>
-          </ScrollView>
-        </SafeAreaView>
-      </KeyboardAwareScrollView>
+        <View style={{marginTop: 24, flexDirection: 'row', width: '90%'}}>
+          <Text style={styles.legend2}>Публичный ключ</Text>
+        </View>
+        <TextInput
+          placeholder={'48DYUGwj3MWZPiQ7pP75XeVNL5uXZ9oNKTBmtEesjv1f'}
+          mode="outlined"
+          style={styles.input2}
+          onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
+          value={walletKeys.pk}
+          placeholderTextColor={'black'}
+        />
+        <View style={{marginTop: 15, flexDirection: 'row', width: '90%'}}>
+          <Text style={styles.legend2}>Секретный ключ</Text>
+        </View>
+        <TextInput
+          placeholder={'3sV2PhSmN1uvxByWAaspVhuQTMF3qf1UycbtsyYw5jzku...'}
+          mode="outlined"
+          style={styles.input2}
+          onChangeText={val => seTwalletKeys({...walletKeys, sk: val})}
+          value={walletKeys.sk}
+          placeholderTextColor={'black'}
+        />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-end',
+          }}></View>
+        <Pressable onPress={submit} style={styles.completeButton}>
+          <Text style={[styles.completeButtonText]}>Зарегистрироваться</Text>
+        </Pressable>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignSelf: 'center',
+            marginBottom: 17,
+            marginTop: 16,
+          }}>
+          <Text style={styles.bottomTitle2}>У вас нет аккаунта?</Text>
+          <Text
+            onPress={() => navigation.navigate('SignUpScreen')}
+            style={styles.bottomTitle2}>
+            Войти
+          </Text>
+        </View>
+      </SafeAreaView>
     </Fragment>
   );
 }

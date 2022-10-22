@@ -6,6 +6,7 @@ import {
   Text,
   SafeAreaView,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import styles from './styles';
 import {Appbar, Button} from 'react-native-paper';
@@ -24,6 +25,7 @@ import utility from '../../utils/Utility';
 import MainStyle from '../../utils/MainStyle';
 import {colorList} from '../../utils/GradientColors';
 import GradientSvg from '../../assets/GradientSvg';
+import UploadSvg from '../../assets/UploadSvg';
 
 const LoginScreen = ({navigation}) => {
   const authContext = useContext(AuthContext);
@@ -124,65 +126,77 @@ const LoginScreen = ({navigation}) => {
       />
       <Loading loading={loading} />
 
-      <KeyboardAwareScrollView>
-        <SafeAreaView style={styles.screen}>
-          <View style={styles.titleContainer}>
-            <Text style={[styles.title]}>CryptoXBET</Text>
-          </View>
+      <SafeAreaView style={styles.screen}>
+        <View style={styles.titleContainer}>
+          <Text style={[styles.title]}>CryptoXBET</Text>
+        </View>
 
-          <Text style={styles.legend}>Публичный ключ</Text>
+        <Text style={styles.legend}>Публичный ключ</Text>
+        <TextInput
+          style={[styles.input]}
+          onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
+          value={walletKeys.pk}
+          placeholderTextColor={'#000000'}
+          placeholder="FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht"
+        />
+
+        <Text style={styles.legend}>Секретный ключ</Text>
+        <View style={styles.inputWrapper}>
           <TextInput
             style={[styles.input]}
-            onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
-            value={walletKeys.pk}
-            placeholderTextColor={'#999CA0'}
-            placeholder="FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht"
+            onChangeText={val => seTwalletKeys({...walletKeys, sk: val})}
+            value={walletKeys.sk}
+            //secureTextEntry={passwordInputSecure}
+            placeholderTextColor={'#000000'}
+            placeholder={'FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht'}
           />
+        </View>
 
-          <Text style={styles.legend}>Секретный ключ</Text>
-          <View style={styles.inputWrapper}>
-            <TextInput
-              style={[styles.input]}
-              onChangeText={val => seTwalletKeys({...walletKeys, sk: val})}
-              value={walletKeys.sk}
-              //secureTextEntry={passwordInputSecure}
-              placeholderTextColor={'#999CA0'}
-              placeholder={'FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht'}
-            />
-          </View>
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            alignSelf: 'center',
+            marginTop: 43,
+          }}
+          onPress={async () => {
+            try {
+              const pickerResult = await DocumentPicker.pickSingle({
+                presentationStyle: 'fullScreen',
+                copyTo: 'cachesDirectory',
+                type: types.allFiles,
+              });
+              setResult([pickerResult]);
+            } catch (e) {
+              handleError(e);
+            }
+          }}>
+          <UploadSvg />
+          <Text>Загрузить</Text>
+        </TouchableOpacity>
 
-          <Button
-            icon="upload"
-            style={{
-              width: '100%',
-              marginTop: 20,
-              marginBottom: 30,
-            }}
-            onPress={async () => {
-              try {
-                const pickerResult = await DocumentPicker.pickSingle({
-                  presentationStyle: 'fullScreen',
-                  copyTo: 'cachesDirectory',
-                  type: types.allFiles,
-                });
-                setResult([pickerResult]);
-              } catch (e) {
-                handleError(e);
-              }
-            }}
-            mode="contained">
-            <Text style={{textAlign: 'center', color: '#000'}}>
-              choose a file
-            </Text>
-          </Button>
-
-          <View style={{marginTop: 20}}>
-            <Pressable onPress={submitLogin} style={[styles.completeButton]}>
-              <Text style={[styles.completeButtonText]}>Войти</Text>
-            </Pressable>
-          </View>
-        </SafeAreaView>
-      </KeyboardAwareScrollView>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-end',
+          }}></View>
+        <Pressable onPress={submitLogin} style={[styles.completeButton]}>
+          <Text style={[styles.completeButtonText]}>Войти</Text>
+        </Pressable>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignSelf: 'center',
+            marginBottom: 28,
+            marginTop: 16,
+          }}>
+          <Text style={styles.bottomTitle}>У вас нет аккаунта?</Text>
+          <Text
+            onPress={() => navigation.navigate('SignUpScreen')}
+            style={styles.bottomTitle2}>
+            Зарегистрироваться
+          </Text>
+        </View>
+      </SafeAreaView>
     </Fragment>
   );
 };

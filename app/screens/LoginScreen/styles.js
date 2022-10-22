@@ -4,8 +4,8 @@ import Colors from '../../constants/Сolors';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+    marginLeft: 20,
+    marginRight: 20,
   },
   container: {
     alignSelf: 'flex-end',
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     lineHeight: 13,
     marginBottom: 6,
+    marginTop: 15,
   },
   error: {
     fontSize: 14,
@@ -74,13 +75,10 @@ const styles = StyleSheet.create({
     color: Colors.red,
   },
   input: {
-    fontSize: 16,
+    fontSize: 13,
     height: 40,
     borderRadius: 10,
     width: '100%',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    marginBottom: 8,
     color: '#FFFFFF30%',
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
   },
@@ -137,14 +135,16 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.white,
     borderRadius: 8,
   },
   completeInactive: {
     backgroundColor: Colors.disabled,
   },
   completeButtonText: {
-    color: Colors.white,
+    color: Colors.black,
+    fontWeight: '600',
+    fontSize: 17,
   },
   separate: {
     flexDirection: 'row',
@@ -183,6 +183,32 @@ const styles = StyleSheet.create({
   },
   googleIcon: {
     marginRight: 10,
+  },
+  aploadKey: {
+    textAlign: 'center',
+    color: '#000',
+    fontWeight: '400',
+    fontSize: 14,
+    lineHeight: 13,
+    color: '#FFFFFF',
+    marginBottom: 274,
+  },
+  bottomTitle: {
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: '400',
+    lineHeight: 17,
+    color: '#FFFFFF',
+  },
+  bottomTitle2: {
+    paddingLeft: 5,
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: '700',
+    lineHeight: 17,
+    color: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#fff',
   },
 });
 
