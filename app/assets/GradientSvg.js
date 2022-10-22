@@ -11,23 +11,25 @@ import Svg, {
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 
 function GradientSvg(props) {
+  const width = props.windowWidth;
+  const height = props.windowHeight;
   return (
     <Svg
-      width={'100%'}
-      height={'100%'}
+      width={width}
+      height={height}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}>
       <G clipPath="url(#clip0_201_1574)">
-        <Rect width={'100%'} height={844} rx={0} fill="#6E6CFD" />
+        <Rect width={width} height={height} rx={0} fill="#6E6CFD" />
 
         <G filter="url(#filter0_d_201_1574)" clipPath="url(#clip1_201_1574)">
           <G clipPath="url(#clip2_201_1574)">
             <Rect
               x={-467}
               y={-2}
-              width={901}
-              height={901}
+              width={width}
+              height={width}
               rx={150.167}
               fill="#6248FF"
             />

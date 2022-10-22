@@ -1,5 +1,11 @@
 import React, {Fragment, useContext} from 'react';
-import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
+import {
+  Dimensions,
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import styles from './styles';
 import {useToast} from 'react-native-toast-notifications';
 
@@ -20,10 +26,15 @@ const LoginMainScreen = ({navigation}) => {
     navigation.navigate('SignUpScreen');
   };
 
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+
   return (
     <Fragment>
       <Loading loading={loading} />
       <GradientSvg
+        windowWidth={windowWidth}
+        windowHeight={windowHeight}
         style={{
           position: 'absolute',
           top: 0,

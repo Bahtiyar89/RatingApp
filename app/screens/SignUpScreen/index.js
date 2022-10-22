@@ -6,6 +6,7 @@ import {
   Text,
   SafeAreaView,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 
 import {useToast} from 'react-native-toast-notifications';
@@ -42,12 +43,17 @@ export default function SignUpScreen({navigation}) {
       '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
     const base58 = basex(ALPHABET);
     let key = await Sodium.crypto_sign_keypair();
-    console.log('keyR', key);
+
     let encoded_SK_Base58 = base58.encode(Buffer.Buffer.from(key.sk, 'base64'));
     let encoded_PK_Base58 = base58.encode(Buffer.Buffer.from(key.pk, 'base64'));
     const obj = {};
     obj['sk'] = encoded_SK_Base58;
     obj['pk'] = encoded_PK_Base58;
+    toast.show('Ключи успешно сгенирированы', {
+      type: 'success',
+      duration: 3000,
+      animationType: 'zoom-in',
+    });
     seTwalletKeys({
       ...walletKeys,
       sk: encoded_SK_Base58,
@@ -66,11 +72,14 @@ export default function SignUpScreen({navigation}) {
       signUp(walletKeys, navigation);
     }
   };
-
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
   return (
     <Fragment>
       <Loading loading={loading} />
       <GradientSvg
+        windowWidth={windowWidth}
+        windowHeight={windowHeight}
         style={{
           position: 'absolute',
           top: 0,
@@ -85,7 +94,7 @@ export default function SignUpScreen({navigation}) {
           <Text style={[styles.title]}>CryptoXBET</Text>
         </View>
 
-        <TouchableOpacity style={{marginTop: 45}}>
+        <TouchableOpacity onPress={generateKeys} style={{marginTop: 45}}>
           <Text style={styles.buttonStyle}>Сгенерировать ключи</Text>
         </TouchableOpacity>
 
@@ -93,7 +102,7 @@ export default function SignUpScreen({navigation}) {
           <Text style={styles.legend2}>Публичный ключ</Text>
         </View>
         <TextInput
-          placeholder={'48DYUGwj3MWZPiQ7pP75XeVNL5uXZ9oNKTBmtEesjv1f'}
+          placeholder={''}
           mode="outlined"
           style={styles.input2}
           onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
@@ -104,7 +113,7 @@ export default function SignUpScreen({navigation}) {
           <Text style={styles.legend2}>Секретный ключ</Text>
         </View>
         <TextInput
-          placeholder={'3sV2PhSmN1uvxByWAaspVhuQTMF3qf1UycbtsyYw5jzku...'}
+          placeholder={''}
           mode="outlined"
           style={styles.input2}
           onChangeText={val => seTwalletKeys({...walletKeys, sk: val})}

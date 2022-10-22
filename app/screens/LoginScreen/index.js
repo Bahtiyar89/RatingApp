@@ -6,6 +6,7 @@ import {
   Text,
   SafeAreaView,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import styles from './styles';
 
@@ -110,10 +111,14 @@ const LoginScreen = ({navigation}) => {
     }
   };
 
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
   return (
     <Fragment>
       <Loading loading={loading} />
       <GradientSvg
+        windowWidth={windowWidth}
+        windowHeight={windowHeight}
         style={{
           position: 'absolute',
           top: 0,

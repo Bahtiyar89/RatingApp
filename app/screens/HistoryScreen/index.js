@@ -15,19 +15,6 @@ import {Appbar} from 'react-native-paper';
 export default function HistoryScreen({navigation}) {
   return (
     <Fragment>
-      <Appbar.Header
-        style={{
-          backgroundColor: '#fff',
-          borderBottomWidth: 1,
-          borderBottomColor: '#003143',
-        }}>
-        <View style={{width: '100%'}}>
-          <Image
-            source={require('../../assets/sensor.png')} //Change your icon image here
-            style={{height: 25, width: 25}}
-          />
-        </View>
-      </Appbar.Header>
       <KeyboardAwareScrollView>
         <SafeAreaView style={styles.screen}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -37,7 +24,9 @@ export default function HistoryScreen({navigation}) {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              <Text>HistoryScreen Screen!</Text>
+              <Text style={{color: '#8E8E93', fontWeight: '500', fontSize: 18}}>
+                История ставок
+              </Text>
             </View>
           </ScrollView>
         </SafeAreaView>
