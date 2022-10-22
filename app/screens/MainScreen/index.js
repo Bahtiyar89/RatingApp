@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useState} from 'react';
+import React, {Fragment, useContext, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -29,7 +29,7 @@ const MainScreen = ({navigation}) => {
     clearRatingsBalance,
     getCountRating,
   } = balanceContext;
-  console.log('balance: ', balance);
+  console.log('balance: ', rates);
   const [walletKeys, seTwalletKeys] = useState({
     sk: '',
     pk: '',
@@ -40,7 +40,7 @@ const MainScreen = ({navigation}) => {
       if (keys) {
         getBalance(keys);
         //  getRatings(columns, keys);
-
+        getCountRating(keys);
         seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       } else {
         seTwalletKeys({...walletKeys, sk: file?.sk, pk: file?.pk});
@@ -58,6 +58,14 @@ const MainScreen = ({navigation}) => {
       };
     }, []),
   );
+  useEffect(() => {
+    async function getData() {
+      const result = await Promise.resolve(rates);
+      seTstavki(result);
+    }
+
+    getData();
+  }, [rates]);
   const [stavki, seTstavki] = useState([
     {
       name: 'Кто выиграет в Хакатон?',

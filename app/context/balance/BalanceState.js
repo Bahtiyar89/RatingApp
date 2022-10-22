@@ -170,7 +170,7 @@ const BalanceState = props => {
       NetworkAlias: 'MainNet',
       MethodApi: 'SmartMethodExecute',
       PublicKey: keys?.pk,
-      TokenPublicKey: 'Dp5sC3FTn7KTPdkH8t2s2r5dUvFqYo5Z32HzX8jsToDm',
+      TokenPublicKey: '2HhHFTXCRBDBwBWh8Q9dgLVxKbNWw9BsNwJH688Qmbag',
       TokenMethod: 'getTotalActiveEvents',
       TransactionSignature: signature,
       notSaveNewState: 1,
@@ -180,7 +180,7 @@ const BalanceState = props => {
       .then(({data}) => {
         dispatch({type: LOADING, payload: false});
         console.log(
-          'data eexxxm: ',
+          'data eexxxm: 3',
           data.dataResponse.smartContractResult.slice(
             18,
             data.dataResponse.smartContractResult.length - 1,
@@ -194,12 +194,7 @@ const BalanceState = props => {
             },
             {
               name: 'to',
-              valInt: parseInt(
-                data.dataResponse.smartContractResult.slice(
-                  18,
-                  data.dataResponse.smartContractResult.length - 1,
-                ),
-              ),
+              valInt: 3,
             },
             {
               name: 'direction',
@@ -227,7 +222,7 @@ const BalanceState = props => {
       NetworkAlias: 'MainNet',
       MethodApi: 'SmartMethodExecute',
       PublicKey: keys?.pk,
-      TokenPublicKey: 'Dp5sC3FTn7KTPdkH8t2s2r5dUvFqYo5Z32HzX8jsToDm',
+      TokenPublicKey: '2HhHFTXCRBDBwBWh8Q9dgLVxKbNWw9BsNwJH688Qmbag',
       TokenMethod: 'getTotalActiveEvents',
       Fee: 0.1,
       notSaveNewState: 1,

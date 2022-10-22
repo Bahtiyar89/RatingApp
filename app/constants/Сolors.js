@@ -5,7 +5,7 @@ const Colors = {
   darkBlue: '#3B5998',
   darkestBlue: '#131527',
   white: '#FFFFFF',
-  black: '#000000',
+  black: '#333333',
   blacker: '#333333',
   blackerSlow: '#8E8E93',
   blackTrans: 'rgba(000,000,000, 0.6)',

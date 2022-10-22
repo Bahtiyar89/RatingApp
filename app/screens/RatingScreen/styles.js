@@ -17,9 +17,25 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
   },
+  balance: {
+    fontSize: 32,
+    lineHeight: 40,
+    alignSelf: 'center',
+    color: Colors.blacker,
+    marginTop: 21,
+    fontWeight: '700',
+  },
+  currentBalance: {
+    fontSize: 18,
+    alignSelf: 'center',
+    color: Colors.blackerSlow,
+    fontWeight: '500',
+  },
   legend: {
-    fontSize: 16,
-    lineHeight: 24,
+    marginTop: 35,
+    fontSize: 18,
+    lineHeight: 21,
+    fontWeight: '600',
     color: Colors.black,
   },
   completeButton: {
@@ -36,10 +52,9 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    marginLeft: 5,
     marginTop: 10,
     padding: 10,
-    width: '100%',
     borderRadius: 20,
   },
 });

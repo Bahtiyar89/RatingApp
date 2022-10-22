@@ -21,6 +21,7 @@ import HistoryScreen from '../screens/HistoryScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import MainScreen from '../screens/MainScreen';
+import RefillScreen from '../screens/RefillScreen';
 
 const Tab = createBottomTabNavigator();
 const LoginStack = createNativeStackNavigator();
@@ -84,6 +85,7 @@ const MainScreens = () => {
           tabBarIcon: ({focused}) => <HistoryRating focused={focused} />,
         }}
       />
+
       <Tab.Screen
         name="RefillScreen"
         component={PluginScreen}
@@ -95,7 +97,7 @@ const MainScreens = () => {
       />
       <Tab.Screen
         name="ProfileScreen"
-        component={PluginScreen}
+        component={ProfileScreen}
         options={{
           headerShown: false,
           tabBarLabel: 'Профиль',

@@ -12,9 +12,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.white,
-    borderBottomWidth: 1,
-    borderBottomColor: '#003143',
+    backgroundColor: 'transparent',
   },
   appBarThreeDevider: {
     width: '90%',
