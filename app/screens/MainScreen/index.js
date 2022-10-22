@@ -238,7 +238,6 @@ const MainScreen = ({navigation}) => {
             renderItem={({item}) => {
               return (
                 <Card
-                  onPress={() => navigation.navigate('RatingScreen', {item})}
                   style={{
                     flex: 1,
                     marginTop: 8,
@@ -269,6 +268,9 @@ const MainScreen = ({navigation}) => {
                           alignItems: 'center',
                         }}>
                         <Paragraph
+                          onPress={() =>
+                            navigation.navigate('RatingScreen', {item})
+                          }
                           style={{
                             paddingRight: 5,
                             color: '#fff',
