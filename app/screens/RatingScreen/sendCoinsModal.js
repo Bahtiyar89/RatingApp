@@ -1,12 +1,11 @@
 import React, {useEffect, useState, useContext, Fragment} from 'react';
-import {View, TouchableOpacity, Text, Pressable} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {View, TouchableOpacity, Text, TextInput} from 'react-native';
+
 import {useFocusEffect} from '@react-navigation/native';
 import Buffer from 'buffer';
 
 import BalanceContext from '../../context/balance/BalanceContext';
 import utility from '../../utils/Utility';
-import CustomModal from '../../components/CustomModal';
 import styles from '../EventsScreen/styles';
 
 export default function SendCoinsModal({
@@ -75,24 +74,7 @@ export default function SendCoinsModal({
     encrypData();
   }, [id]);
 
-  const containerStyle = {
-    backgroundColor: 'white',
-    padding: 20,
-    margin: 0,
-    borderRadius: 20,
-  };
   const [price, seTprice] = useState('');
-  const [result, setResult] = useState();
-  const [scan, setScan] = useState(false);
-
-  const startScan = () => {
-    setScan(true);
-    setResult();
-  };
-  const onSuccess = e => {
-    setResult(e.data);
-    setScan(false);
-  };
 
   const handleSendCoins = () => {
     postRateParticipant(walletKeys, Number(price), item?.scAddr, encripted);
@@ -109,8 +91,8 @@ export default function SendCoinsModal({
             marginTop: 8,
             fontSize: 13,
             height: 40,
-            borderRadius: 10,
-            width: '100%',
+            borderRadius: 8,
+            width: '326',
             color: '#FFFFFF30%',
             backgroundColor: '#F2F3F7',
           },
@@ -122,6 +104,7 @@ export default function SendCoinsModal({
       />
       <View style={{flexDirection: 'row', marginTop: 8}}>
         <TouchableOpacity
+          onPress={() => seTprice('10')}
           style={{
             borderRadius: 8,
             backgroundColor: '#F2F3F7',
@@ -130,6 +113,7 @@ export default function SendCoinsModal({
           <Text>10 SWT</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => seTprice('20')}
           style={{
             borderRadius: 8,
             backgroundColor: '#F2F3F7',
@@ -139,6 +123,7 @@ export default function SendCoinsModal({
           <Text>20 SWT</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => seTprice('100')}
           style={{
             borderRadius: 8,
             backgroundColor: '#F2F3F7',
