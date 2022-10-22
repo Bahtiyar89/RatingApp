@@ -84,11 +84,6 @@ export default function SignUpScreen({navigation}) {
       />
 
       <SafeAreaView style={styles.screen}>
-        <View style={styles.container}>
-          <Pressable onPress={() => navigation.navigate('LoginScreen')}>
-            <Text style={styles.logInSignUpButton}>Логин</Text>
-          </Pressable>
-        </View>
         <View style={styles.titleContainer}>
           <Text style={[styles.title]}>CryptoXBET</Text>
         </View>
@@ -134,9 +129,9 @@ export default function SignUpScreen({navigation}) {
             marginBottom: 17,
             marginTop: 16,
           }}>
-          <Text style={styles.bottomTitle2}>У вас нет аккаунта?</Text>
+          <Text style={styles.bottomTitle1}>У вас нет аккаунта?</Text>
           <Text
-            onPress={() => navigation.navigate('SignUpScreen')}
+            onPress={() => navigation.navigate('LoginScreen')}
             style={styles.bottomTitle2}>
             Войти
           </Text>
