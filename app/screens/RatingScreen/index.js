@@ -206,11 +206,12 @@ export default function RatingScreen(props) {
             <Text style={styles.balance}>{balance?.balance}</Text>
             <Text style={styles.currentBalance}>Текущий баланс SWT</Text>
             <Card
-              onPress={() => navigation.navigate('RatingScreen', {item})}
+              onPress={() => props.navigation.navigate('RatingScreen', {item})}
               style={{
                 flex: 1,
                 marginTop: 8,
                 borderRadius: 10,
+                marginBottom: 20,
               }}>
               <Card.Content>
                 {[item].map(element => renderItem(element))}

@@ -92,7 +92,7 @@ export default function SendCoinsModal({
             fontSize: 13,
             height: 40,
             borderRadius: 8,
-            width: '326',
+            width: 326,
             color: '#FFFFFF30%',
             backgroundColor: '#F2F3F7',
           },

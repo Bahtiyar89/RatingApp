@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
   },
   screen: {
     flex: 1,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+    marginLeft: 20,
+    marginRight: 20,
   },
   balance: {
     fontSize: 32,
