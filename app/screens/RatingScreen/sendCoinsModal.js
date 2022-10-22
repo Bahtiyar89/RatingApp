@@ -2,6 +2,7 @@ import React, {useEffect, useState, useContext, Fragment} from 'react';
 import {View, TouchableOpacity, Text, TextInput} from 'react-native';
 
 import {useFocusEffect} from '@react-navigation/native';
+import {Card, Title, Paragraph, Button} from 'react-native-paper';
 import Buffer from 'buffer';
 
 import BalanceContext from '../../context/balance/BalanceContext';
@@ -80,10 +81,10 @@ export default function SendCoinsModal({
     postRateParticipant(walletKeys, Number(price), item?.scAddr, encripted);
     hideModal();
   };
-  console.log('item:', item);
+
   return (
     <Fragment>
-      <Text style={styles.legend}>{'Введите сумму'}</Text>
+      <Paragraph style={styles.legend}>{'Введите сумму'}</Paragraph>
       <TextInput
         style={[
           {
@@ -133,7 +134,7 @@ export default function SendCoinsModal({
           <Text>100 SWT</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.legend}>{'Сумма возможного выигрыша'}</Text>
+      <Paragraph style={styles.legend}>{'Сумма возможного выигрыша'}</Paragraph>
       <View style={{flexDirection: 'row', marginTop: 8}}>
         <TouchableOpacity
           style={{

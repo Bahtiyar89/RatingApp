@@ -82,7 +82,6 @@ export default function TransactionScreen({navigation}) {
               data={transactionHistory}
               keyExtractor={item => 'item_' + item.id}
               renderItem={({item, index}) => {
-                console.log('item: ', item);
                 return (
                   <Card style={{marginTop: 20}}>
                     <Card.Content>

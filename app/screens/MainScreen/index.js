@@ -18,17 +18,26 @@ import LittleGradientSvg from '../../assets/LittleGradientSvg';
 import LogoSvg from '../../assets/LogoSvg';
 import styles from './styles';
 import MolotokSvg from '../../assets/MolotokSvg';
+
+const columns = [
+  {
+    name: 'from',
+    valInt: 0,
+  },
+  {
+    name: 'to',
+    valInt: 3,
+  },
+  {
+    name: 'direction',
+    valInt: 0,
+  },
+];
+
 const MainScreen = ({navigation}) => {
   const balanceContext = useContext(BalanceContext);
-  const {
-    loading,
-    balance,
-    getBalance,
-    getRatings,
-    rates,
-    clearRatingsBalance,
-    getCountRating,
-  } = balanceContext;
+  const {loading, balance, getBalance, getRatings, rates, clearRatingsBalance} =
+    balanceContext;
   console.log('balance: ', rates);
   const [walletKeys, seTwalletKeys] = useState({
     sk: '',
@@ -39,8 +48,8 @@ const MainScreen = ({navigation}) => {
     await utility.getItemObject('wkeys').then(keys => {
       if (keys) {
         getBalance(keys);
-        //  getRatings(columns, keys);
-        getCountRating(keys);
+        getRatings(columns, keys);
+
         seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       } else {
         seTwalletKeys({...walletKeys, sk: file?.sk, pk: file?.pk});
@@ -244,8 +253,7 @@ const MainScreen = ({navigation}) => {
                     borderRadius: 10,
                   }}>
                   <Card.Content>
-                    <Title
-                      style={{fontSize: 14, lineHeight: 17, color: '#333333'}}>
+                    <Title style={{fontSize: 14, lineHeight: 17}}>
                       {item.name}
                     </Title>
 

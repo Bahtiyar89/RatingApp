@@ -4,6 +4,8 @@ import styles from './styles';
 
 export default function ButtonComponent(props) {
   const {id, setmodal, setId, setItemName, itemName} = props;
+  console.log('idd: ', id);
+  console.log('itemName: ', itemName);
   return (
     <Fragment>
       <TouchableOpacity

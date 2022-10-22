@@ -70,8 +70,8 @@ const BalanceState = props => {
       authKey: '',
       NetworkAlias: 'MainNet',
       MethodApi: 'SmartMethodExecute',
-      PublicKey: 'FqeMNqD2AfKUHceJQi8ZpeyEvouzESq7248tfcXAsVD6',
-      TokenPublicKey: 'Dp5sC3FTn7KTPdkH8t2s2r5dUvFqYo5Z32HzX8jsToDm',
+      PublicKey: keys?.pk,
+      TokenPublicKey: '2HhHFTXCRBDBwBWh8Q9dgLVxKbNWw9BsNwJH688Qmbag',
       TokenMethod: 'GetActiveEvents',
       TransactionSignature: signature,
       notSaveNewState: 1,
@@ -113,7 +113,7 @@ const BalanceState = props => {
       NetworkAlias: 'MainNet',
       MethodApi: 'SmartMethodExecute',
       PublicKey: keys?.pk,
-      TokenPublicKey: 'Dp5sC3FTn7KTPdkH8t2s2r5dUvFqYo5Z32HzX8jsToDm',
+      TokenPublicKey: '2HhHFTXCRBDBwBWh8Q9dgLVxKbNWw9BsNwJH688Qmbag',
       TokenMethod: 'GetActiveEvents',
       Fee: 0.1,
       notSaveNewState: 1,
@@ -179,6 +179,7 @@ const BalanceState = props => {
     })
       .then(({data}) => {
         dispatch({type: LOADING, payload: false});
+        console.log('jjjjjjjjj: ', data);
         console.log(
           'data eexxxm: 3',
           data.dataResponse.smartContractResult.slice(
@@ -186,6 +187,13 @@ const BalanceState = props => {
             data.dataResponse.smartContractResult.length - 1,
           ),
         );
+        let d = 0;
+        d = data.dataResponse.smartContractResult.slice(
+          18,
+          data.dataResponse.smartContractResult.length - 1,
+        );
+        console.log('d: ', d);
+        /*
         getRatings(
           [
             {
@@ -202,7 +210,7 @@ const BalanceState = props => {
             },
           ],
           keys,
-        );
+        );*/
       })
       .catch(error => {
         dispatch({type: LOADING, payload: false});

@@ -59,7 +59,6 @@ export default function EventsScreen({navigation}) {
     loading,
     balance,
     getBalance,
-    getRatings,
     rates,
     clearRatingsBalance,
     getCountRating,
@@ -84,7 +83,7 @@ export default function EventsScreen({navigation}) {
       if (keys) {
         getBalance(keys);
         //  getRatings(columns, keys);
-        getCountRating(keys);
+
         seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       } else {
         seTwalletKeys({...walletKeys, sk: file?.sk, pk: file?.pk});

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import Colors from '../../constants/Сolors';
 
 const styles = StyleSheet.create({
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   legend: {
     fontSize: 16,
     lineHeight: 24,
-    color: Colors.black,
   },
   error: {
     fontSize: 14,
@@ -196,7 +195,7 @@ const styles = StyleSheet.create({
     padding: 32,
     color: '#777',
   },
-  textInput: { width: '100%' },
+  textInput: {width: '100%'},
 });
 
 export default styles;

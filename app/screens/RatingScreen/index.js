@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useContext} from 'react';
+import React, {Fragment, useState, useEffect, useContext} from 'react';
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useFocusEffect} from '@react-navigation/native';
-import {Card, Title, Paragraph, Button} from 'react-native-paper';
+import {Card, Title, Paragraph} from 'react-native-paper';
 
 import BalanceContext from '../../context/balance/BalanceContext';
 import ShevronLeft from '../../assets/chevron-left';
@@ -41,21 +41,22 @@ export default function RatingScreen(props) {
     }, [props.route.params.item]),
   );
 
+  useEffect(() => {}, [itemName]);
+
   const renderItem = element => {
-    console.log('item:: ', item);
+    console.log('item:: 222 3', element.id2);
     return (
       <View key={element?.key}>
         <Title style={styles.legend}>{element?.name}</Title>
         <Paragraph
           style={{
             fontWeight: '400',
-            color: '#8E8E93',
             fontSize: 14,
             lineHeight: 17,
           }}>
           {item?.dt}
         </Paragraph>
-        <Text style={styles.legend}>{'Команды'}</Text>
+        <Paragraph style={styles.legend}>{'Команды'}</Paragraph>
 
         <View
           style={{
@@ -66,7 +67,7 @@ export default function RatingScreen(props) {
             <ButtonComponent
               itemName={itemName}
               id={element.id1}
-              setmodal={() => console.log('ccc', itemName)}
+              setmodal={() => console.log('ccc')}
               setId={() => setId('id1')}
               setItemName={() => setItemName(element.id1)}
             />
@@ -74,8 +75,9 @@ export default function RatingScreen(props) {
 
           {element.id2?.trim() != '' && element.id2?.trim() != 'none' && (
             <ButtonComponent
+              itemName={itemName}
               id={element.id2}
-              setmodal={() => setVisibleModal(!visibleModal)}
+              setmodal={() => console.log('ccc')}
               setId={() => setId('id2')}
               setItemName={() => setItemName(element.id2)}
             />
@@ -83,6 +85,7 @@ export default function RatingScreen(props) {
 
           {element.id3?.trim() != '' && element.id3?.trim() != 'none' && (
             <ButtonComponent
+              itemName={itemName}
               id={element.id3}
               setmodal={() => setVisibleModal(!visibleModal)}
               setId={() => setId('id3')}
@@ -92,6 +95,7 @@ export default function RatingScreen(props) {
 
           {element.id4?.trim() != '' && element.id4?.trim() != 'none' && (
             <ButtonComponent
+              itemName={itemName}
               id={element.id4}
               setmodal={() => setVisibleModal(!visibleModal)}
               setId={() => setId('id4')}
@@ -101,6 +105,7 @@ export default function RatingScreen(props) {
 
           {element.id5?.trim() != '' && element.id5?.trim() != 'none' && (
             <ButtonComponent
+              itemName={itemName}
               id={element.id5}
               setmodal={() => setVisibleModal(!visibleModal)}
               setId={() => setId('id5')}
@@ -110,6 +115,7 @@ export default function RatingScreen(props) {
 
           {element.id6?.trim() != '' && element.id6?.trim() != 'none' && (
             <ButtonComponent
+              itemName={itemName}
               id={element.id6}
               setmodal={() => setVisibleModal(!visibleModal)}
               setId={() => setId('id6')}
@@ -119,6 +125,7 @@ export default function RatingScreen(props) {
 
           {element.id7?.trim() != '' && element.id7?.trim() != 'none' && (
             <ButtonComponent
+              itemName={itemName}
               id={element.id7}
               setmodal={() => setVisibleModal(!visibleModal)}
               setId={() => setId('id7')}
@@ -128,6 +135,7 @@ export default function RatingScreen(props) {
 
           {element.id8?.trim() != '' && element.id8?.trim() != 'none' && (
             <ButtonComponent
+              itemName={itemName}
               id={element.id8}
               setmodal={() => setVisibleModal(!visibleModal)}
               setId={() => setId('id8')}
@@ -137,6 +145,7 @@ export default function RatingScreen(props) {
 
           {element.id9?.trim() != '' && element.id9?.trim() != 'none' && (
             <ButtonComponent
+              itemName={itemName}
               id={element.id9}
               setmodal={() => setVisibleModal(!visibleModal)}
               setId={() => setId('id9')}
