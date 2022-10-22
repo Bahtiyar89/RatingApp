@@ -127,11 +127,18 @@ export default function SignUpScreen({navigation}) {
             marginTop: 16,
           }}>
           <Text style={styles.bottomTitle1}>У вас нет аккаунта?</Text>
-          <Text
-            onPress={() => navigation.navigate('LoginScreen')}
-            style={styles.bottomTitle2}>
-            Войти
-          </Text>
+          <View
+            style={{
+              borderBottomColor: '#fff',
+              borderBottomWidth: 1,
+              marginLeft: 3,
+            }}>
+            <Text
+              onPress={() => navigation.navigate('LoginScreen')}
+              style={styles.bottomTitle2}>
+              Войти
+            </Text>
+          </View>
         </View>
       </SafeAreaView>
     </Fragment>

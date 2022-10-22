@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     paddingBottom: 14,
   },
   input2: {
+    paddingLeft: 8,
     fontSize: 13,
     height: 40,
     borderRadius: 10,
@@ -94,17 +95,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bottomTitle2: {
-    paddingLeft: 5,
     textAlign: 'center',
     fontSize: 15,
     fontWeight: '700',
     lineHeight: 20,
     color: '#FFFFFF',
-    borderBottomWidth: 1,
-    borderBottomColor: '#fff',
   },
   bottomTitle1: {
-    paddingLeft: 5,
     textAlign: 'center',
     fontSize: 15,
     fontWeight: '400',

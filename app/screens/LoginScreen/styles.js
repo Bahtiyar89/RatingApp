@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   input: {
+    paddingLeft: 8,
     fontSize: 13,
     height: 40,
     borderRadius: 10,
@@ -65,14 +66,11 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   bottomTitle2: {
-    paddingLeft: 5,
     textAlign: 'center',
     fontSize: 15,
     fontWeight: '700',
     lineHeight: 17,
     color: '#FFFFFF',
-    borderBottomWidth: 1,
-    borderBottomColor: '#fff',
   },
 });
 

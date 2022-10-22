@@ -190,11 +190,18 @@ const LoginScreen = ({navigation}) => {
             marginTop: 16,
           }}>
           <Text style={styles.bottomTitle}>У вас нет аккаунта?</Text>
-          <Text
-            onPress={() => navigation.navigate('SignUpScreen')}
-            style={styles.bottomTitle2}>
-            Зарегистрироваться
-          </Text>
+          <View
+            style={{
+              borderBottomColor: '#fff',
+              borderBottomWidth: 1,
+              marginLeft: 3,
+            }}>
+            <Text
+              onPress={() => navigation.navigate('SignUpScreen')}
+              style={styles.bottomTitle2}>
+              Зарегистрироваться
+            </Text>
+          </View>
         </View>
       </SafeAreaView>
     </Fragment>
