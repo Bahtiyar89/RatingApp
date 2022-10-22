@@ -16,7 +16,9 @@ export default function ButtonComponent(props) {
           setId();
           setItemName();
         }}>
-        <Text>{id}</Text>
+        <Text style={[{color: itemName === id ? '#FFFFFF' : '##8E8E93'}]}>
+          {id}
+        </Text>
       </TouchableOpacity>
     </Fragment>
   );
