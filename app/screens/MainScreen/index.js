@@ -1,15 +1,7 @@
-import React, {useEffect, Fragment, useContext, useState} from 'react';
-import {
-  View,
-  TextInput,
-  Pressable,
-  Text,
-  SafeAreaView,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import React, {Fragment, useContext, useState} from 'react';
+import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import styles from './styles';
-import {Appbar, Button} from 'react-native-paper';
+import {Appbar} from 'react-native-paper';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import DrawerSvg from '../../assets/tabImages/DrawerSvg';
 

@@ -1,12 +1,5 @@
 import React, {Fragment, useState, useContext} from 'react';
-import {
-  View,
-  Pressable,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Pressable, Text, SafeAreaView, ScrollView} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useFocusEffect} from '@react-navigation/native';
 import {Appbar} from 'react-native-paper';

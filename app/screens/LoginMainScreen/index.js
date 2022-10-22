@@ -1,13 +1,5 @@
 import React, {Fragment, useContext} from 'react';
-import {
-  View,
-  TextInput,
-  Pressable,
-  Text,
-  SafeAreaView,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import {useToast} from 'react-native-toast-notifications';
 
@@ -60,7 +52,7 @@ const LoginMainScreen = ({navigation}) => {
         <TouchableOpacity
           onPress={submitLogin}
           style={[styles.completeButton2]}>
-          <Text style={[styles.completeButtonText]}>Войти</Text>
+          <Text style={[styles.loginText]}>Войти</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </Fragment>

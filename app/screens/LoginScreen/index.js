@@ -5,13 +5,12 @@ import {
   Pressable,
   Text,
   SafeAreaView,
-  Image,
   TouchableOpacity,
 } from 'react-native';
 import styles from './styles';
-import {Appbar, Button} from 'react-native-paper';
+
 import RNFS from 'react-native-fs';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
 import DocumentPicker, {
   isInProgress,
   types,
@@ -22,8 +21,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import utility from '../../utils/Utility';
-import MainStyle from '../../utils/MainStyle';
-import {colorList} from '../../utils/GradientColors';
+
 import GradientSvg from '../../assets/GradientSvg';
 import UploadSvg from '../../assets/UploadSvg';
 
@@ -171,7 +169,9 @@ const LoginScreen = ({navigation}) => {
             }
           }}>
           <UploadSvg />
-          <Text>Загрузить</Text>
+          <Text style={{paddingLeft: 5, color: '#FFFFFF'}}>
+            Загрузить ключ{' '}
+          </Text>
         </TouchableOpacity>
 
         <View

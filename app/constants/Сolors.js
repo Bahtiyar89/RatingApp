@@ -19,6 +19,6 @@ const Colors = {
 
   defaultBlackTrans: 'rgba(17, 18, 26, 0.8)',
   violet: '#7D4BFF',
-  defaultBlack: '#11121A',
+  defaultBlack: '#636363',
 };
 export default Colors;

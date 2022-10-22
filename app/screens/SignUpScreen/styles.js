@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
 
   completeButtonText: {
-    color: Colors.black,
+    color: Colors.defaultBlack,
     fontWeight: '600',
     fontSize: 17,
     lineHeight: 22,

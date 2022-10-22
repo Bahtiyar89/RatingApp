@@ -5,18 +5,15 @@ import {
   Pressable,
   Text,
   SafeAreaView,
-  ScrollView,
-  Image,
   TouchableOpacity,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
 import {useToast} from 'react-native-toast-notifications';
-import {Appbar, Button} from 'react-native-paper';
+
 import Sodium from 'react-native-sodium';
 import basex from 'bs58-rn';
 import Buffer from 'buffer';
 
-import Logo from '../../assets/logo.svg';
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import styles from './styles';
