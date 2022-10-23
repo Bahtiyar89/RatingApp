@@ -32,6 +32,7 @@ export default function HistoryScreen({navigation}) {
                 История ставок
               </Text>
             </View>
+            {/*}
             <Text
               style={{
                 marginTop: 13,
@@ -435,7 +436,7 @@ export default function HistoryScreen({navigation}) {
                   </Text>
                 </View>
               </Card.Content>
-            </Card>
+            </Card>*/}
           </ScrollView>
         </SafeAreaView>
       </KeyboardAwareScrollView>
