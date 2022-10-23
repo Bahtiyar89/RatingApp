@@ -72,7 +72,7 @@ const AuthState = props => {
             buttonPositive: 'OK',
           },
         );
-
+        console.log('path: ', path);
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           RNFS.writeFile(path, JSON.stringify(file), 'utf8')
             .then(success => {

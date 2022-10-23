@@ -369,6 +369,115 @@ const BalanceState = props => {
       });
   };
 
+  const sendTransactionExecute = async (
+    transactionPackagedStr,
+    wk,
+    price,
+    addressPk,
+  ) => {
+    const ALPHABET =
+      '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    const base58 = basex(ALPHABET);
+
+    let decodedFoBase58 = base58.decode(wk.sk);
+    const decryptedMessageFromByteArray = Base64.fromByteArray(decodedFoBase58);
+
+    let decoded = base58.decode(transactionPackagedStr);
+    const decrypted = Base64.fromByteArray(decoded);
+
+    let dt = await Sodium.crypto_sign_detached(
+      decrypted,
+      decryptedMessageFromByteArray,
+    );
+    let signature = base58.encode(Buffer.Buffer.from(dt, 'base64'));
+
+    doPost('api/transaction/Execute', {
+      authKey: '',
+      NetworkAlias: 'MainNet',
+      MethodApi: 'TransferCs',
+      PublicKey: wk.pk,
+      ReceiverPublicKey: addressPk,
+      Amount: price,
+      Fee: 0.2,
+      UserData: '',
+      TransactionSignature: signature,
+    })
+      .then(({data}) => {
+        console.log('wk: ', wk);
+        getBalance(wk);
+        console.log('daaattaaa:execute sended', data);
+        utility.setItemObject('lastTransaction', {
+          ReceiverPublicKey: addressPk,
+          Amount: price,
+        });
+        dispatch({type: LOADING, payload: false});
+        if (data.success) {
+          toast.show('Транзакция отправлено', {
+            type: 'success',
+            duration: 3000,
+            animationType: 'zoom-in',
+          });
+        } else {
+          toast.show(data.message, {
+            type: 'warning',
+            duration: 3000,
+            animationType: 'zoom-in',
+          });
+        }
+      })
+      .catch(error => {
+        dispatch({type: LOADING, payload: false});
+        toast.show(error.response.data, {
+          type: 'warning',
+          duration: 3000,
+          animationType: 'zoom-in',
+        });
+      });
+  };
+
+  const sendBalance = async (wk, price, addressPk) => {
+    const ALPHABET =
+      '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    const base58 = basex(ALPHABET);
+
+    dispatch({type: LOADING, payload: true});
+    doPost('api/transaction/pack', {
+      PublicKey: wk.pk,
+      ReceiverPublicKey: addressPk,
+      networkAlias: 'MainNet',
+      authKey: '',
+      MethodApi: 'TransferCs',
+      Amount: price,
+      Fee: 0.2,
+      UserData: '',
+    })
+      .then(({data}) => {
+        console.log('data:Pack ', data);
+        if (data.success) {
+          sendTransactionExecute(
+            data.dataResponse.transactionPackagedStr,
+            wk,
+            price,
+            addressPk,
+          );
+        } else {
+          dispatch({type: LOADING, payload: false});
+          toast.show(data.message, {
+            type: 'warning',
+            duration: 3000,
+            animationType: 'zoom-in',
+          });
+        }
+      })
+      .catch(error => {
+        dispatch({type: LOADING, payload: false});
+        toast.show(error.response.data, {
+          type: 'warning',
+          duration: 3000,
+          animationType: 'zoom-in',
+        });
+      });
+  };
   //Get Balance
   const clearRatingsBalance = () => {
     dispatch({type: CLEAR_RATINGS_BALANCE});
@@ -381,6 +490,7 @@ const BalanceState = props => {
         rates: state.rates,
         loading: state.loading,
         postRateParticipant,
+        sendBalance,
         getRatings,
         getCountRating,
         getBalance,

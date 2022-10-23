@@ -1,39 +1,16 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {
-  Text,
-  Pressable,
-  Image,
-  TouchableOpacity,
-  View,
-  TextInput,
-  SafeAreaView,
-} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import React, {useState, useContext} from 'react';
+import {Text, Image, TouchableOpacity, View, TextInput} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import QRCode from 'react-native-qrcode-svg';
-import Clipboard from '@react-native-clipboard/clipboard';
 import {useFocusEffect} from '@react-navigation/native';
-import {
-  // TextInput,
-  IconButton,
-  Appbar,
-  Card,
-  Title,
-  Paragraph,
-  Button,
-  Modal,
-  Portal,
-} from 'react-native-paper';
-import utility from '../../utils/Utility';
-import styles from './styles';
-import ShevronLeft from '../../assets/chevron-left';
 
-import MainStyle from '../../utils/MainStyle';
+import BalanceContext from '../../context/balance/BalanceContext';
+import utility from '../../utils/Utility';
 import Colors from '../../constants/Сolors';
+import styles from './styles';
 
 export default function OneIndex({navigation}) {
-  const [replenish, seTreplenish] = useState('');
-  const [send, seTsend] = useState('');
+  const balanceContext = useContext(BalanceContext);
+  const {sendBalance, loading} = balanceContext;
   const [amount, seTamount] = useState('');
   const [result, setResult] = useState();
   const [scan, setScan] = useState(false);
@@ -70,7 +47,12 @@ export default function OneIndex({navigation}) {
     setResult(e.data);
     setScan(false);
   };
-  console.log('amount: ', amount);
+
+  const sendBalanceButton = () => {
+    sendBalance(walletKeys, Number(amount), result);
+    seTamount(0);
+    setResult();
+  };
   return (
     <View style={{marginTop: 30}}>
       {!scan && (
@@ -125,7 +107,7 @@ export default function OneIndex({navigation}) {
             placeholder="от 1 SWT"
           />
           <TouchableOpacity
-            onPress={() => console.log('ddd')}
+            onPress={sendBalanceButton}
             style={{
               marginTop: 30,
               borderRadius: 8,

@@ -14,16 +14,39 @@ import {useToast} from 'react-native-toast-notifications';
 import Sodium from 'react-native-sodium';
 import basex from 'bs58-rn';
 import Buffer from 'buffer';
+import {useFocusEffect} from '@react-navigation/native';
 
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import styles from './styles';
 import GradientSvg from '../../assets/GradientSvg';
+import utility from '../../utils/Utility';
 
 export default function SignUpScreen({navigation}) {
   const toast = useToast();
   const authContext = useContext(AuthContext);
   const {loading, signUp} = authContext;
+  const [keyGenerate, setKeyGenerate] = useState(true);
+
+  async function encrypData() {
+    await utility.getItemObject('wkeys').then(keys => {
+      if (Object.keys(keys).length != 0) {
+        setKeyGenerate(false);
+      }
+    });
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // Do something when the screen is focused
+      encrypData();
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+      };
+    }, []),
+  );
+
   const [walletKeys, seTwalletKeys] = useState({
     sk: '',
     pk: '',
@@ -39,31 +62,47 @@ export default function SignUpScreen({navigation}) {
   });
 
   const generateKeys = async () => {
-    const ALPHABET =
-      '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
-    const base58 = basex(ALPHABET);
-    let key = await Sodium.crypto_sign_keypair();
+    setKeyGenerate;
+    if (keyGenerate) {
+      const ALPHABET =
+        '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+      const base58 = basex(ALPHABET);
+      let key = await Sodium.crypto_sign_keypair();
 
-    let encoded_SK_Base58 = base58.encode(Buffer.Buffer.from(key.sk, 'base64'));
-    let encoded_PK_Base58 = base58.encode(Buffer.Buffer.from(key.pk, 'base64'));
-    const obj = {};
-    obj['sk'] = encoded_SK_Base58;
-    obj['pk'] = encoded_PK_Base58;
-    toast.show('Ключи успешно сгенирированы', {
-      type: 'success',
-      duration: 3000,
-      animationType: 'zoom-in',
-    });
-    seTwalletKeys({
-      ...walletKeys,
-      sk: encoded_SK_Base58,
-      pk: encoded_PK_Base58,
-    });
+      let encoded_SK_Base58 = base58.encode(
+        Buffer.Buffer.from(key.sk, 'base64'),
+      );
+      let encoded_PK_Base58 = base58.encode(
+        Buffer.Buffer.from(key.pk, 'base64'),
+      );
+      const obj = {};
+      obj['sk'] = encoded_SK_Base58;
+      obj['pk'] = encoded_PK_Base58;
+      toast.show('Ключи успешно сгенирированы', {
+        type: 'success',
+        duration: 2000,
+        animationType: 'zoom-in',
+      });
+      seTwalletKeys({
+        ...walletKeys,
+        sk: encoded_SK_Base58,
+        pk: encoded_PK_Base58,
+      });
+    } else {
+      toast.show(
+        'Вы не можете сгенирировать ключи так как у вас уже есть ключи!',
+        {
+          type: 'success',
+          duration: 4000,
+          animationType: 'zoom-in',
+        },
+      );
+    }
   };
 
   const submit = () => {
     if (walletKeys.pk.length < 10 || walletKeys.sk.length < 10) {
-      toast.show('generate_keys', {
+      toast.show('Вы не сгенирировали ключи!', {
         type: 'warning',
         duration: 4000,
         animationType: 'zoom-in',

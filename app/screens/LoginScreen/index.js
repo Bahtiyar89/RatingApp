@@ -52,9 +52,7 @@ const LoginScreen = ({navigation}) => {
 
   async function encrypData() {
     await utility.getItemObject('wkeys').then(keys => {
-      console.log('keys:3 ', keys);
       if (Object.keys(keys).length != 0) {
-        console.log('ccc:');
         seTwalletKeys({...walletKeys, sk: keys?.sk, pk: keys?.pk});
       }
     });
@@ -109,7 +107,7 @@ const LoginScreen = ({navigation}) => {
       signin(walletKeys);
     }
   };
-
+  console.log('walletKeys', walletKeys);
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   console.log('walletKeys: ', walletKeys);
