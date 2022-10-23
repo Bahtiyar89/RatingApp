@@ -139,7 +139,7 @@ export default function OneIndex({navigation}) {
                 textAlign: 'center',
                 color: 'white',
               }}>
-              Отправить баланс
+              Отправить
             </Text>
           </TouchableOpacity>
         </View>

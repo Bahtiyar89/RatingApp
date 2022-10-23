@@ -2,7 +2,6 @@ import * as React from 'react';
 import Svg, {Rect} from 'react-native-svg';
 
 function HistoryRating(props) {
-  console.log('props:: ', props.focused);
   return (
     <Svg
       width={26}

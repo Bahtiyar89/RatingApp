@@ -176,7 +176,7 @@ const ZeroIndex = ({navigation, walletKeys}) => {
         {'Ваш публичный ключ:'}
       </Text>
       <View style={{marginTop: 20}}>
-        <QRCode value={walletKeys.pk} />
+        {walletKeys?.pk && <QRCode value={walletKeys?.pk || ''} />}
         <TouchableOpacity onPress={() => Clipboard.setString(walletKeys.pk)}>
           <Text style={{color: Colors.defaultBlue, fontWeight: '700'}}>
             Скопировать в буффер
