@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext, Fragment} from 'react';
 import {View, TouchableOpacity, Text, TextInput} from 'react-native';
-
+import {useToast} from 'react-native-toast-notifications';
 import {useFocusEffect} from '@react-navigation/native';
 import {Card, Title, Paragraph, Button} from 'react-native-paper';
 import Buffer from 'buffer';
@@ -16,6 +16,7 @@ export default function SendCoinsModal({
   id,
   itemName,
 }) {
+  const toast = useToast();
   const balanceContext = useContext(BalanceContext);
   const {postRateParticipant, loading} = balanceContext;
   const [encripted, seTencripted] = useState();
@@ -78,8 +79,15 @@ export default function SendCoinsModal({
   const [price, seTprice] = useState('');
 
   const handleSendCoins = () => {
-    postRateParticipant(walletKeys, Number(price), item?.scAddr, encripted);
-    hideModal();
+    if (id == undefined) {
+      toast.show('Выберите команду', {
+        type: 'warning',
+        duration: 3000,
+        animationType: 'zoom-in',
+      });
+    } else {
+      postRateParticipant(walletKeys, Number(price), item?.scAddr, encripted);
+    }
   };
 
   return (
