@@ -73,7 +73,6 @@ export default function OneIndex({navigation}) {
                   backgroundColor: Colors.white,
                 },
               ]}
-              editable={false}
               value={result}
             />
             <TouchableOpacity

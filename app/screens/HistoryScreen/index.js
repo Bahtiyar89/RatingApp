@@ -44,7 +44,7 @@ export default function HistoryScreen({navigation}) {
             </Text>
 
             <Card
-              onPress={() => navigation.navigate('RatingScreen', {item})}
+              onPress={() => console.log('ff')}
               style={{
                 flex: 1,
                 marginTop: 8,
@@ -170,7 +170,7 @@ export default function HistoryScreen({navigation}) {
             </Text>
 
             <Card
-              onPress={() => navigation.navigate('RatingScreen', {item})}
+              onPress={() => console.log('ccc')}
               style={{
                 flex: 1,
                 marginTop: 8,
@@ -304,7 +304,7 @@ export default function HistoryScreen({navigation}) {
             </Card>
 
             <Card
-              onPress={() => navigation.navigate('RatingScreen', {item})}
+              onPress={() => console.log('kk')}
               style={{
                 flex: 1,
                 marginTop: 8,
