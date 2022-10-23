@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 21,
     fontWeight: '600',
+    color: Colors.black,
   },
   completeButton: {
     marginTop: 20,

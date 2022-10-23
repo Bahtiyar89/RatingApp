@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   legend: {
     fontSize: 16,
     lineHeight: 24,
+    color: Colors.black,
   },
   error: {
     fontSize: 14,

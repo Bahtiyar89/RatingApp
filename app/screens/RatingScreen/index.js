@@ -19,6 +19,7 @@ import styles from './styles';
 import Loading from '../../components/Loading';
 import ButtonComponent from './ButtonComponent';
 import utility from '../../utils/Utility';
+import Colors from '../../constants/Сolors';
 
 export default function RatingScreen(props) {
   const balanceContext = useContext(BalanceContext);
@@ -53,6 +54,7 @@ export default function RatingScreen(props) {
             fontWeight: '400',
             fontSize: 14,
             lineHeight: 17,
+            color: Colors.black,
           }}>
           {item?.dt}
         </Paragraph>
@@ -221,6 +223,7 @@ export default function RatingScreen(props) {
                 marginTop: 8,
                 borderRadius: 10,
                 marginBottom: 20,
+                backgroundColor: '#fff',
               }}>
               <Card.Content>
                 {[item].map(element => renderItem(element))}

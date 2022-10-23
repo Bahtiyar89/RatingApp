@@ -289,6 +289,8 @@ const BalanceState = props => {
       TransactionSignature: signature,
     })
       .then(({data}) => {
+        console.log('wk: ', wk);
+        getBalance(wk);
         console.log('daaattaaa:execute sended', data);
         utility.setItemObject('lastTransaction', {
           ReceiverPublicKey: addressPk,

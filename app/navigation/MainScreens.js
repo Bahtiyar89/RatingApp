@@ -85,7 +85,7 @@ const MainScreens = () => {
           tabBarIcon: ({focused}) => <HistoryRating focused={focused} />,
         }}
       />
-
+      {/*
       <Tab.Screen
         name="RefillScreen"
         component={PluginScreen}
@@ -103,7 +103,7 @@ const MainScreens = () => {
           tabBarLabel: 'Профиль',
           tabBarIcon: ({focused}) => <ProfileSvg focused={focused} />,
         }}
-      />
+      />*/}
     </Tab.Navigator>
   );
 };

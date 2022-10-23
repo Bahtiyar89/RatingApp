@@ -18,6 +18,7 @@ import LittleGradientSvg from '../../assets/LittleGradientSvg';
 import LogoSvg from '../../assets/LogoSvg';
 import styles from './styles';
 import MolotokSvg from '../../assets/MolotokSvg';
+import Colors from '../../constants/Сolors';
 
 const columns = [
   {
@@ -126,7 +127,7 @@ const MainScreen = ({navigation}) => {
                   fontSize: 12,
                   color: '#fff',
                 }}>
-                Smart Wall...
+                Smart World...
               </Text>
               <Text
                 style={{
@@ -251,14 +252,23 @@ const MainScreen = ({navigation}) => {
                     flex: 1,
                     marginTop: 8,
                     borderRadius: 10,
+                    backgroundColor: '#fff',
                   }}>
                   <Card.Content>
-                    <Title style={{fontSize: 14, lineHeight: 17}}>
+                    <Title
+                      style={{
+                        color: Colors.black,
+                        fontSize: 14,
+                        lineHeight: 17,
+                      }}>
                       {item.name}
                     </Title>
 
                     <Paragraph
-                      style={{color: '#8E8E93', fontSize: 12, lineHeight: 14}}>
+                      style={{
+                        fontSize: 12,
+                        lineHeight: 14,
+                      }}>
                       {item.content}
                     </Paragraph>
 
