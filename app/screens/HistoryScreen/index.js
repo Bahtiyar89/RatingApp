@@ -13,6 +13,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Appbar, Card, Title, Paragraph, Button} from 'react-native-paper';
 import styles from './styles';
 import MolotokSvg from '../../assets/MolotokSvg';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 export default function HistoryScreen({navigation}) {
   return (
@@ -48,6 +49,7 @@ export default function HistoryScreen({navigation}) {
                 flex: 1,
                 marginTop: 8,
                 borderRadius: 10,
+                backgroundColor: 'white',
               }}>
               <Card.Content
                 style={{
@@ -173,6 +175,7 @@ export default function HistoryScreen({navigation}) {
                 flex: 1,
                 marginTop: 8,
                 borderRadius: 10,
+                backgroundColor: 'white',
               }}>
               <Card.Content
                 style={{
@@ -306,6 +309,7 @@ export default function HistoryScreen({navigation}) {
                 flex: 1,
                 marginTop: 8,
                 borderRadius: 10,
+                backgroundColor: 'white',
               }}>
               <Card.Content
                 style={{
