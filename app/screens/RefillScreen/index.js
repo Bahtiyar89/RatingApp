@@ -152,7 +152,11 @@ const RefillScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
 
-          {selectedIndex === 0 ? <ZeroIndex /> : <OneIndex visible={true} />}
+          {selectedIndex === 0 ? (
+            <ZeroIndex walletKeys={walletKeys} />
+          ) : (
+            <OneIndex walletKeys={walletKeys} visible={true} />
+          )}
         </SafeAreaView>
       </KeyboardAwareScrollView>
     </Fragment>

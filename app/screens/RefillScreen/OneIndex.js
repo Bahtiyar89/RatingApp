@@ -75,22 +75,6 @@ export default function OneIndex({navigation}) {
     <View style={{marginTop: 30}}>
       {!scan && (
         <View>
-          <Text
-            style={{
-              marginTop: 30,
-              fontWeight: '700',
-              fontSize: 22,
-              lineHeight: 26,
-              color: '#333333',
-            }}>
-            {'Вашы публичный ключ:'}
-          </Text>
-          <QRCode value={walletKeys.pk} />
-          <Pressable
-            onPress={() => console.log()}
-            style={[styles.completeButton, {marginTop: 20, marginBottom: 20}]}>
-            <Text style={styles.completeButtonText}>{walletKeys.pk}</Text>
-          </Pressable>
           <Text style={styles.textparagraph}>Адрес отправки</Text>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <TextInput

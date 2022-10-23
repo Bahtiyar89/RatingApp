@@ -8,13 +8,14 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-
+import QRCode from 'react-native-qrcode-svg';
+import Clipboard from '@react-native-clipboard/clipboard';
 import Colors from '../../constants/Сolors';
 import ModdleGradientSvg from '../../assets/ModdleGradientSvg';
 
-const ZeroIndex = ({navigation}) => {
+const ZeroIndex = ({navigation, walletKeys}) => {
   const [price, seTprice] = useState('');
-
+  console.log('walletKeys: ', walletKeys.pk);
   return (
     <Fragment>
       <Text
@@ -163,6 +164,24 @@ const ZeroIndex = ({navigation}) => {
             BTC
           </Text>
         </View>
+      </View>
+      <Text
+        style={{
+          marginTop: 30,
+          fontWeight: '700',
+          fontSize: 22,
+          lineHeight: 26,
+          color: '#333333',
+        }}>
+        {'Ваш публичный ключ:'}
+      </Text>
+      <View style={{marginTop: 20}}>
+        <QRCode value={walletKeys.pk} />
+        <TouchableOpacity onPress={() => Clipboard.setString(walletKeys.pk)}>
+          <Text style={{color: Colors.defaultBlue, fontWeight: '700'}}>
+            Скопировать в буффер
+          </Text>
+        </TouchableOpacity>
       </View>
 
       <Text
