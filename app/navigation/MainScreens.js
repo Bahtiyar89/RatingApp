@@ -85,19 +85,19 @@ const MainScreens = () => {
           tabBarIcon: ({focused}) => <HistoryRating focused={focused} />,
         }}
       />
-      {/*
+
       <Tab.Screen
         name="RefillScreen"
-        component={PluginScreen}
+        component={RefillScreen}
         options={{
           headerShown: false,
           tabBarLabel: 'Счет',
           tabBarIcon: ({focused}) => <BillSvg focused={focused} />,
         }}
       />
-      <Tab.Screen
+      {/*   <Tab.Screen
         name="ProfileScreen"
-        component={ProfileScreen}
+        component={BalanceSendScreen}
         options={{
           headerShown: false,
           tabBarLabel: 'Профиль',

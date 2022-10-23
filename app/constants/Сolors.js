@@ -1,5 +1,6 @@
 const Colors = {
   // Primary colors
+  defaultBlue: '#6248FF',
   blue: '#00ADEF',
   blueTrans: '#80D6F7',
   darkBlue: '#3B5998',
