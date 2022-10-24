@@ -3,12 +3,14 @@ import {
   LOADING,
   GET_RATINGS,
   CLEAR_RATINGS_BALANCE,
+  HISTORY_RATINGS,
 } from '../types';
+import utility from '../../utils/Utility';
 
 export default (state, action) => {
   switch (action.type) {
     case LOADING:
-      return { ...state, loading: action.payload };
+      return {...state, loading: action.payload};
 
     case GET_BALANCE:
       return {
@@ -22,9 +24,30 @@ export default (state, action) => {
         ...state,
         rates: parsed,
       };
+    case HISTORY_RATINGS:
+      const {historyRates, obj} = action.payload;
+      console.log('action.payload: ', action.payload);
+      console.log('historyRates', historyRates);
+      console.log('obj', obj);
+
+      const newItemHistory = {
+        amount: obj.amount,
+        date: obj.date,
+        rateName: obj.rateName,
+        team: obj.team,
+        total: obj.total,
+        your_prediction: obj.your_prediction,
+      };
+
+      let arrOfObj = Object.assign([], historyRates);
+      arrOfObj.push(newItemHistory);
+      utility.setItemObject('historyOfRatings', arrOfObj);
+      return {
+        ...state,
+      };
     case CLEAR_RATINGS_BALANCE:
       console.log('clearing: ');
-      return { ...state, rates: [], balance: [] };
+      return {...state, rates: [], balance: []};
     default:
       return state;
   }

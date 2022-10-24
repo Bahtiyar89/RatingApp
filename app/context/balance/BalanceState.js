@@ -15,6 +15,7 @@ import {
   LOADING,
   GET_RATINGS,
   CLEAR_RATINGS_BALANCE,
+  HISTORY_RATINGS,
 } from '../types';
 
 const BalanceState = props => {
@@ -258,6 +259,8 @@ const BalanceState = props => {
     price,
     addressPk,
     toEncrypt,
+    historyRates,
+    obj,
   ) => {
     const ALPHABET =
       '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
@@ -297,6 +300,10 @@ const BalanceState = props => {
           Amount: price,
         });
         dispatch({type: LOADING, payload: false});
+        dispatch({
+          type: HISTORY_RATINGS,
+          payload: {historyRates, obj},
+        });
         if (data.success) {
           toast.show('Транзакция отправлено', {
             type: 'success',
@@ -322,7 +329,14 @@ const BalanceState = props => {
   };
 
   //Rate to participant
-  const postRateParticipant = async (wk, price, addressPk, toEncrypt) => {
+  const postRateParticipant = async (
+    wk,
+    price,
+    addressPk,
+    toEncrypt,
+    historyRates,
+    obj,
+  ) => {
     const ALPHABET =
       '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
     const base58 = basex(ALPHABET);
@@ -349,6 +363,8 @@ const BalanceState = props => {
             price,
             addressPk,
             toEncrypt,
+            historyRates,
+            obj,
           );
         } else {
           dispatch({type: LOADING, payload: false});

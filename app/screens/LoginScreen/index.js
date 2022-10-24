@@ -34,8 +34,8 @@ const LoginScreen = ({navigation}) => {
 
   const [result, setResult] = useState();
   const [walletKeys, seTwalletKeys] = useState({
-    sk: '3i8tu4DsTrZKUAZRUjqxvpVT4Xycve8doNbwyGVuBJ8nRtZxEMBbNBD5PfBpTdgV36uPPKtkoCG3EwgoVdPuFsm8',
-    pk: 'FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht',
+    sk: '4m9yzp9bkbiYWisUaojfd9AuXg25RSgLqwoRfZHQkaDGgKzke9ZVgAfDjFEYFQA1KppjGBEhNJoWg6maeVzGbo48',
+    pk: 'FqeMNqD2AfKUHceJQi8ZpeyEvouzESq7248tfcXAsVD6',
   });
   const handleError = err => {
     if (DocumentPicker.isCancel(err)) {
@@ -138,7 +138,7 @@ const LoginScreen = ({navigation}) => {
           onChangeText={val => seTwalletKeys({...walletKeys, pk: val})}
           value={walletKeys.pk}
           placeholderTextColor={'#000000'}
-          placeholder="FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht"
+          placeholder="3i8tu4DsTrZKUAZRUjqxvpVT4Xycve8doNbwyGVuBJ8nRtZxEMBbNBD5PfBpTdgV36uPPKtkoCG3EwgoVdPuFsm8"
         />
 
         <Text style={styles.legend}>Секретный ключ</Text>
@@ -149,7 +149,7 @@ const LoginScreen = ({navigation}) => {
             value={walletKeys.sk}
             //secureTextEntry={passwordInputSecure}
             placeholderTextColor={'#000000'}
-            placeholder={'FLSXfhuXoZb8azzHgUN9Dt3HEup4FYndbwEHx7jmGpht'}
+            placeholder={'FqeMNqD2AfKUHceJQi8ZpeyEvouzESq7248tfcXAsVD6'}
           />
         </View>
 

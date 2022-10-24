@@ -8,18 +8,14 @@ import Buffer from 'buffer';
 import BalanceContext from '../../context/balance/BalanceContext';
 import utility from '../../utils/Utility';
 import styles from '../EventsScreen/styles';
+import {dateTodayString} from '../../utils/format';
 
-export default function SendCoinsModal({
-  visible,
-  hideModal,
-  item,
-  id,
-  itemName,
-}) {
+export default function SendCoinsModal({item, id, itemName, historyRates}) {
   const toast = useToast();
   const balanceContext = useContext(BalanceContext);
   const {postRateParticipant, loading} = balanceContext;
   const [encripted, seTencripted] = useState();
+  const [price, seTprice] = useState('');
   const [walletKeys, seTwalletKeys] = useState({
     sk: '',
     pk: '',
@@ -76,8 +72,6 @@ export default function SendCoinsModal({
     encrypData();
   }, [id]);
 
-  const [price, seTprice] = useState('');
-
   const handleSendCoins = () => {
     if (id == undefined) {
       toast.show('Выберите команду', {
@@ -86,7 +80,21 @@ export default function SendCoinsModal({
         animationType: 'zoom-in',
       });
     } else {
-      postRateParticipant(walletKeys, Number(price), item?.scAddr, encripted);
+      postRateParticipant(
+        walletKeys,
+        Number(price),
+        item?.scAddr,
+        encripted,
+        historyRates,
+        {
+          rateName: item.name,
+          your_prediction: 'Вниз',
+          total: 34,
+          date: dateTodayString(new Date()),
+          team: itemName,
+          amount: price,
+        },
+      );
     }
   };
 

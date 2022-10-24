@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-  TextInput,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useFocusEffect} from '@react-navigation/native';
@@ -29,7 +28,34 @@ export default function RatingScreen(props) {
   const [item, setItem] = useState({});
   const [itemName, setItemName] = useState('');
   const [visibleModal, setVisibleModal] = useState(false);
-  const [result, setResult] = useState('');
+  const [historyRates, setHistoryRates] = useState([]);
+  const fetchCalculator = async () => {
+    setHistoryRates([]);
+
+    const allRatings = await utility.getItemObject('historyOfRatings');
+    console.log('allRatings: ', allRatings);
+    if (allRatings) {
+      setHistoryRates(allRatings);
+    }
+  };
+  console.log('historyRates: ', historyRates);
+  useFocusEffect(
+    React.useCallback(
+      () => {
+        // Do something when the screen is focused
+        fetchCalculator();
+
+        return () => {
+          // Do something when the screen is unfocused
+          // Useful for cleanup functions
+        };
+      },
+      [
+        /*user, good*/
+      ],
+    ),
+  );
+
   useFocusEffect(
     React.useCallback(() => {
       // Do something when the screen is focused
@@ -42,10 +68,7 @@ export default function RatingScreen(props) {
     }, [props.route.params.item]),
   );
 
-  useEffect(() => {}, [itemName]);
-
   const renderItem = element => {
-    console.log('item:: 222 3', element.id2);
     return (
       <View key={element?.key}>
         <Title style={styles.legend}>{element?.name}</Title>
@@ -228,8 +251,7 @@ export default function RatingScreen(props) {
               <Card.Content>
                 {[item].map(element => renderItem(element))}
                 <SendCoinsModal
-                  visible={visibleModal}
-                  hideModal={() => setVisibleModal(false)}
+                  historyRates={historyRates}
                   item={item}
                   id={id}
                   itemName={itemName}
