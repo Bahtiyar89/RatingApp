@@ -43,7 +43,7 @@ export default function HistoryScreen({navigation}) {
       ],
     ),
   );
-  console.log('cc: ', historyOfRates);
+  console.log('cc: ', historyOfRates.length);
   return (
     <Fragment>
       <KeyboardAwareScrollView>
@@ -60,17 +60,18 @@ export default function HistoryScreen({navigation}) {
                 История ставок
               </Text>
             </View>
-
-            <Text
-              style={{
-                marginTop: 30,
-                fontWeight: '700',
-                fontSize: 22,
-                lineHeight: 26,
-                color: '#333333',
-              }}>
-              Завершенные
-            </Text>
+            {historyOfRates.length > 0 && (
+              <Text
+                style={{
+                  marginTop: 30,
+                  fontWeight: '700',
+                  fontSize: 22,
+                  lineHeight: 26,
+                  color: '#333333',
+                }}>
+                Завершенные
+              </Text>
+            )}
 
             <FlatList
               style={{
