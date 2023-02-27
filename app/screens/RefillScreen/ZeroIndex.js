@@ -1,19 +1,10 @@
-import React, {Fragment, useContext, useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  FlatList,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import React, {Fragment} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import {useToast} from 'react-native-toast-notifications';
 import Clipboard from '@react-native-clipboard/clipboard';
-
-import Colors from '../../constants/Сolors';
-import ModdleGradientSvg from '../../assets/ModdleGradientSvg';
+import RNFS from 'react-native-fs';
+import utility from '../../utils/Utility';
 
 const ZeroIndex = ({navigation, walletKeys}) => {
   const toast = useToast();
@@ -25,6 +16,28 @@ const ZeroIndex = ({navigation, walletKeys}) => {
       animationType: 'zoom-in',
     });
   };
+
+  const downloadKeys = async () => {
+    await utility.getItemObject('wkeys').then(keys => {
+      if (keys) {
+        var path = RNFS.DocumentDirectoryPath + '/keys.txt';
+        console.log('path: ', path);
+
+        RNFS.writeFile(path, JSON.stringify(keys), 'utf8')
+          .then(() =>
+            toastRef.current.show('Успешно сохранено', {
+              type: 'success',
+              duration: 4000,
+              animationType: 'zoom-in',
+            }),
+          )
+          .catch(err => console.log(err.message));
+      } else {
+        console.log('else', keys);
+      }
+    });
+  };
+
   return (
     <Fragment>
       <Text
@@ -57,6 +70,24 @@ const ZeroIndex = ({navigation, walletKeys}) => {
             color: 'white',
           }}>
           Скопировать в буффер
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={downloadKeys}
+        style={{
+          marginTop: 30,
+          borderRadius: 8,
+          backgroundColor: '#6248FF',
+          padding: 13,
+        }}>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: '500',
+            textAlign: 'center',
+            color: 'white',
+          }}>
+          Скачать ключи
         </Text>
       </TouchableOpacity>
     </Fragment>
