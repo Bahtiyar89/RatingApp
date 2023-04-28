@@ -7,12 +7,13 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import React, { Fragment, useState } from 'react';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React, {Fragment, useState} from 'react';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
-import { Appbar } from 'react-native-paper';
+import {Appbar} from 'react-native-paper';
+import PropTypes from 'prop-types';
 
-export default function PluginScreen({ navigation }) {
+export default function PluginScreen({navigation}) {
   return (
     <Fragment>
       <Appbar.Header
@@ -21,10 +22,10 @@ export default function PluginScreen({ navigation }) {
           borderBottomWidth: 1,
           borderBottomColor: '#003143',
         }}>
-        <View style={{ width: '100%' }}>
+        <View style={{width: '100%'}}>
           <Image
             source={require('../../assets/sensor.png')} //Change your icon image here
-            style={{ height: 25, width: 25 }}
+            style={{height: 25, width: 25}}
           />
         </View>
       </Appbar.Header>
@@ -45,3 +46,10 @@ export default function PluginScreen({ navigation }) {
     </Fragment>
   );
 }
+PluginScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+PluginScreen.defaultProps = {
+  navigation: {},
+};

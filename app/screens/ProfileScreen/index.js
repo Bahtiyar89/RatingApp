@@ -5,6 +5,7 @@ import {Appbar} from 'react-native-paper';
 import ShevronLeft from '../../assets/chevron-left';
 import MainStyle from '../../utils/MainStyle';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 export default function ProfileScreen({navigation}) {
   return (
@@ -40,3 +41,10 @@ export default function ProfileScreen({navigation}) {
     </Fragment>
   );
 }
+ProfileScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+ProfileScreen.defaultProps = {
+  navigation: {},
+};

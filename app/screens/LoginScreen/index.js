@@ -22,6 +22,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import utility from '../../utils/Utility';
+import PropTypes from 'prop-types';
 
 import GradientSvg from '../../assets/GradientSvg';
 import UploadSvg from '../../assets/UploadSvg';
@@ -209,6 +210,14 @@ const LoginScreen = ({navigation}) => {
       </SafeAreaView>
     </Fragment>
   );
+};
+
+LoginScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+LoginScreen.defaultProps = {
+  navigation: {},
 };
 
 export default LoginScreen;

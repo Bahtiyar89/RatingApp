@@ -16,6 +16,7 @@ import moment from 'moment';
 import utility from '../../utils/Utility';
 import styles from './styles';
 import {dateTodayString} from '../../utils/format';
+import PropTypes from 'prop-types';
 
 export default function HistoryScreen({navigation}) {
   const [historyOfRates, setHistoryOfRates] = useState([]);
@@ -350,3 +351,10 @@ export default function HistoryScreen({navigation}) {
     </Fragment>
   );
 }
+HistoryScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+HistoryScreen.defaultProps = {
+  navigation: {},
+};

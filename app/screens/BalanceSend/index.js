@@ -25,6 +25,7 @@ import {
 import utility from '../../utils/Utility';
 import styles from './styles';
 import ShevronLeft from '../../assets/chevron-left';
+import PropTypes from 'prop-types';
 
 import MainStyle from '../../utils/MainStyle';
 export default function BalanceSendScreen({navigation}) {
@@ -142,3 +143,11 @@ export default function BalanceSendScreen({navigation}) {
     </Fragment>
   );
 }
+
+BalanceSendScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+BalanceSendScreen.defaultProps = {
+  navigation: {},
+};

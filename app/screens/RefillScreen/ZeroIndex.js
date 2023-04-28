@@ -5,6 +5,7 @@ import {useToast} from 'react-native-toast-notifications';
 import Clipboard from '@react-native-clipboard/clipboard';
 import RNFS from 'react-native-fs';
 import utility from '../../utils/Utility';
+import PropTypes from 'prop-types';
 
 const ZeroIndex = ({navigation, walletKeys}) => {
   const toast = useToast();
@@ -92,6 +93,22 @@ const ZeroIndex = ({navigation, walletKeys}) => {
       </TouchableOpacity>
     </Fragment>
   );
+};
+
+ZeroIndex.propTypes = {
+  navigation: PropTypes.object,
+};
+
+ZeroIndex.defaultProps = {
+  navigation: {},
+};
+
+ZeroIndex.propTypes = {
+  walletKeys: PropTypes.object,
+};
+
+ZeroIndex.defaultProps = {
+  walletKeys: {},
 };
 
 export default ZeroIndex;

@@ -21,6 +21,7 @@ import Loading from '../../components/Loading';
 import styles from './styles';
 import GradientSvg from '../../assets/GradientSvg';
 import utility from '../../utils/Utility';
+import PropTypes from 'prop-types';
 
 export default function SignUpScreen({navigation}) {
   const toast = useToast();
@@ -192,3 +193,11 @@ export default function SignUpScreen({navigation}) {
     </Fragment>
   );
 }
+
+SignUpScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+SignUpScreen.defaultProps = {
+  navigation: {},
+};

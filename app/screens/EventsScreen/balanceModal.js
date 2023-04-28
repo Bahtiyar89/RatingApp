@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Text, Pressable, TouchableOpacity, View } from 'react-native';
-import { Modal, Portal, TextInput } from 'react-native-paper';
+import React, {useState} from 'react';
+import {Text, Pressable, TouchableOpacity, View} from 'react-native';
+import {Modal, Portal, TextInput} from 'react-native-paper';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import QRCode from 'react-native-qrcode-svg';
-import Clipboard from '@react-native-clipboard/clipboard';
+import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-export default function BalanceModal({ walletKeys, visible, hideModal }) {
+export default function BalanceModal({walletKeys, visible, hideModal}) {
   const containerStyle = {
     backgroundColor: 'white',
     padding: 20,
@@ -41,7 +41,7 @@ export default function BalanceModal({ walletKeys, visible, hideModal }) {
               onPress={() => console.log()}
               style={[
                 styles.completeButton,
-                { marginTop: 20, marginBottom: 20 },
+                {marginTop: 20, marginBottom: 20},
               ]}>
               <Text style={styles.completeButtonText}>Пополнить баланс</Text>
             </Pressable>
@@ -55,7 +55,7 @@ export default function BalanceModal({ walletKeys, visible, hideModal }) {
             />
             <Pressable
               onPress={() => console.log()}
-              style={[styles.completeButton, { marginTop: 20 }]}>
+              style={[styles.completeButton, {marginTop: 20}]}>
               <Text style={styles.completeButtonText}>Отправить баланс</Text>
             </Pressable>
           </>
@@ -66,7 +66,7 @@ export default function BalanceModal({ walletKeys, visible, hideModal }) {
               <Text>закрыть сканирование</Text>
             </TouchableOpacity>
             <QRCodeScanner
-              containerStyle={{ position: 'absolute' }}
+              containerStyle={{position: 'absolute'}}
               reactivate={true}
               showMarker={true}
               onRead={onSuccess}
@@ -85,3 +85,26 @@ export default function BalanceModal({ walletKeys, visible, hideModal }) {
     </Portal>
   );
 }
+BalanceModal.propTypes = {
+  walletKeys: PropTypes.object,
+};
+
+BalanceModal.defaultProps = {
+  walletKeys: {},
+};
+
+BalanceModal.propTypes = {
+  visible: PropTypes.object,
+};
+
+BalanceModal.defaultProps = {
+  visible: {},
+};
+
+BalanceModal.propTypes = {
+  hideModal: PropTypes.object,
+};
+
+BalanceModal.defaultProps = {
+  hideModal: {},
+};

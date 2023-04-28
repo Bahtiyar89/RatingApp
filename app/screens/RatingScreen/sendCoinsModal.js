@@ -9,6 +9,7 @@ import BalanceContext from '../../context/balance/BalanceContext';
 import utility from '../../utils/Utility';
 import styles from '../EventsScreen/styles';
 import {dateTodayString} from '../../utils/format';
+import PropTypes from 'prop-types';
 
 export default function SendCoinsModal({item, id, itemName, historyRates}) {
   const toast = useToast();
@@ -183,3 +184,31 @@ export default function SendCoinsModal({item, id, itemName, historyRates}) {
     </Fragment>
   );
 }
+SendCoinsModal.propTypes = {
+  item: PropTypes.object,
+};
+
+SendCoinsModal.defaultProps = {
+  item: {},
+};
+SendCoinsModal.propTypes = {
+  id: PropTypes.object,
+};
+
+SendCoinsModal.defaultProps = {
+  id: {},
+};
+SendCoinsModal.propTypes = {
+  itemName: PropTypes.object,
+};
+
+SendCoinsModal.defaultProps = {
+  itemName: {},
+};
+SendCoinsModal.propTypes = {
+  historyRates: PropTypes.object,
+};
+
+SendCoinsModal.defaultProps = {
+  historyRates: {},
+};

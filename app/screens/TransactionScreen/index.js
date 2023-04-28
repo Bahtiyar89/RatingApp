@@ -21,6 +21,7 @@ import MainStyle from '../../utils/MainStyle';
 import ShevronLeft from '../../assets/chevron-left';
 import utility from '../../utils/Utility';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 export default function TransactionScreen({navigation}) {
   const transactionContext = useContext(TransactionContext);
@@ -126,4 +127,11 @@ export default function TransactionScreen({navigation}) {
       </KeyboardAwareScrollView>
     </Fragment>
   );
+  TransactionScreen.propTypes = {
+    navigation: PropTypes.object,
+  };
+
+  TransactionScreen.defaultProps = {
+    navigation: {},
+  };
 }

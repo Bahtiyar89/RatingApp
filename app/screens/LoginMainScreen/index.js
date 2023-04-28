@@ -12,6 +12,7 @@ import {useToast} from 'react-native-toast-notifications';
 import AuthContext from '../../context/auth/AuthContext';
 import Loading from '../../components/Loading';
 import GradientSvg from '../../assets/GradientSvg';
+import PropTypes from 'prop-types';
 
 const LoginMainScreen = ({navigation}) => {
   const authContext = useContext(AuthContext);
@@ -68,6 +69,14 @@ const LoginMainScreen = ({navigation}) => {
       </SafeAreaView>
     </Fragment>
   );
+};
+
+LoginMainScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+LoginMainScreen.defaultProps = {
+  navigation: {},
 };
 
 export default LoginMainScreen;

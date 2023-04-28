@@ -6,6 +6,7 @@ import {WebView} from 'react-native-webview';
 import {Appbar, Card, Title, Paragraph} from 'react-native-paper';
 import MainStyle from '../../utils/MainStyle';
 import ShevronLeft from '../../assets/chevron-left';
+import PropTypes from 'prop-types';
 
 export default function TransactionHistoryScreen({navigation, route}) {
   const [fromAccount, seTfromAccount] = useState('');
@@ -42,3 +43,19 @@ export default function TransactionHistoryScreen({navigation, route}) {
     </Fragment>
   );
 }
+
+TransactionHistoryScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+TransactionHistoryScreen.defaultProps = {
+  navigation: {},
+};
+
+TransactionHistoryScreen.propTypes = {
+  route: PropTypes.object,
+};
+
+TransactionHistoryScreen.defaultProps = {
+  route: {},
+};

@@ -19,6 +19,7 @@ import LogoSvg from '../../assets/LogoSvg';
 import styles from './styles';
 import MolotokSvg from '../../assets/MolotokSvg';
 import Colors from '../../constants/Сolors';
+import PropTypes from 'prop-types';
 
 const columns = [
   {
@@ -309,6 +310,14 @@ const MainScreen = ({navigation}) => {
       </KeyboardAwareScrollView>
     </Fragment>
   );
+};
+
+MainScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+MainScreen.defaultProps = {
+  navigation: {},
 };
 
 export default MainScreen;

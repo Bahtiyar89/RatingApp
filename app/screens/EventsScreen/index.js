@@ -23,6 +23,7 @@ import styles from './styles';
 import {Appbar, Card, Title, Paragraph, Button} from 'react-native-paper';
 import {useFocusEffect} from '@react-navigation/native';
 import {useToast} from 'react-native-toast-notifications';
+import PropTypes from 'prop-types';
 
 import BalanceContext from '../../context/balance/BalanceContext';
 import HomeBottomSheet from '../../components/HomeBottomSheet';
@@ -262,3 +263,10 @@ export default function EventsScreen({navigation}) {
     </Fragment>
   );
 }
+EventsScreen.propTypes = {
+  navigation: PropTypes.object,
+};
+
+EventsScreen.defaultProps = {
+  navigation: {},
+};

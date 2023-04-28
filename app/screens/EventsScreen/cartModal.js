@@ -16,7 +16,7 @@ import {
   TextInput,
   Pressable,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import {
   Appbar,
@@ -29,8 +29,9 @@ import {
 } from 'react-native-paper';
 
 import CustomModal from '../../components/CustomLoading';
+import PropTypes from 'prop-types';
 
-export default function CartModal({ navigation, visible, hideModal }) {
+export default function CartModal({navigation, visible, hideModal}) {
   const containerStyle = {
     backgroundColor: 'white',
     padding: 20,
@@ -51,3 +52,26 @@ export default function CartModal({ navigation, visible, hideModal }) {
     </Portal>
   );
 }
+CartModal.propTypes = {
+  walletKeys: PropTypes.object,
+};
+
+CartModal.defaultProps = {
+  walletKeys: {},
+};
+
+CartModal.propTypes = {
+  visible: PropTypes.object,
+};
+
+CartModal.defaultProps = {
+  visible: {},
+};
+
+CartModal.propTypes = {
+  hideModal: PropTypes.object,
+};
+
+CartModal.defaultProps = {
+  hideModal: {},
+};
